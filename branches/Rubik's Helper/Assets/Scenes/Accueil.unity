@@ -156,10 +156,10 @@ RectTransform:
   m_Father: {fileID: 207303229}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000039101, y: 0}
-  m_SizeDelta: {x: 790, y: 525}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.000061035, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &163976667
 MonoBehaviour:
@@ -247,10 +247,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -337,10 +337,10 @@ RectTransform:
   m_Father: {fileID: 207303229}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030515, y: 157}
-  m_SizeDelta: {x: 601.1819, y: 103.84}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0.000082493, y: -329.41998}
+  m_SizeDelta: {x: 1285.167, y: 103.839966}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &353988676
 MonoBehaviour:
@@ -364,18 +364,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
-    m_FontSize: 40
+    m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
-    m_MaxSize: 50
+    m_MaxSize: 70
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Bienvenue sur Rubik's Helper 2023
+  m_Text: Bienvenue sur Rubik's Helper 2023 !
 --- !u!222 &353988677
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -420,10 +420,10 @@ RectTransform:
   m_Father: {fileID: 207303229}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.75, y: 0}
-  m_SizeDelta: {x: 788.5, y: 525}
+  m_SizeDelta: {x: -1131.5, y: -555}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &394807281
 MonoBehaviour:
@@ -564,10 +564,10 @@ RectTransform:
   m_Father: {fileID: 207303229}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.90961, y: -162}
-  m_SizeDelta: {x: 601.1819, y: 52.8993}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0.000082493, y: 173}
+  m_SizeDelta: {x: 1274.5964, y: 91.8078}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &573200546
 MonoBehaviour:
@@ -591,11 +591,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
-    m_FontSize: 30
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 3
-    m_MaxSize: 50
+    m_MinSize: 0
+    m_MaxSize: 80
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -740,8 +740,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.9096, y: -9.0965}
-  m_SizeDelta: {x: 209.653, y: 194.8019}
+  m_AnchoredPosition: {x: 5.2853, y: -87.1}
+  m_SizeDelta: {x: 381.8942, y: 350.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1434664756
 CanvasRenderer:
@@ -773,7 +773,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 6efe4b20d17187b4d840fb2009882579, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1

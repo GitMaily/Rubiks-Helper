@@ -15,7 +15,9 @@ public class MenuPrincipal : MonoBehaviour
     
     public void quitterApplication()
     {
-        EditorApplication.isPlaying=false;
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+    #endif
         Application.Quit();
     }
 }
