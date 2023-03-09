@@ -17,7 +17,7 @@ public class Readcube : MonoBehaviour
     private List<GameObject> downRays = new List<GameObject>();
     private List<GameObject> leftRays = new List<GameObject>();
     private List<GameObject> rightRays = new List<GameObject>();  
-    private int layerMask = 1 << 6; // this layerMask is for the faces of the cube only
+    private int layerMask = 1 << 6; // pour les faces du cube, il faut ajouter un layer à la 6e place dans l'éditeur
 
     public GameObject emptyGO;
 
@@ -40,11 +40,11 @@ public class Readcube : MonoBehaviour
     
     List<GameObject> BuildRays(Transform rayTransform, Vector3 direction)
         {
-            // The ray count is used to name the rays so we can be sure they are in the right order.
+            // utilisé pour nommer les rays, pour bien vérifier qu'ils soient dans le bon ordre
             int rayCount = 0;
             List<GameObject> rays = new List<GameObject>();
-            // This creates 9 rays in the shape of the side of the cube with
-            // Ray 0 at the top left and Ray 8 at the bottom right:
+            // Créer 9 rays devant chaque cube pour une face
+            // le ray 0 en haut à gauche et le ray 8 en bas à droite
             //  |0|1|2|
             //  |3|4|5|
             //  |6|7|8|
@@ -68,7 +68,7 @@ public class Readcube : MonoBehaviour
 
     void SetRayTransforms()
             {
-                // populate the ray lists with raycasts eminating from the transform, angled towards the cube.
+                // Ajouter tous les ray necessaires dans la liste, pointés vers le cube.
                 upRays = BuildRays(tUp, new Vector3(90, 90, 0));
                 downRays = BuildRays(tDown, new Vector3(270, 90, 0));
                 leftRays = BuildRays(tLeft, new Vector3(0, 180, 0));
@@ -86,7 +86,7 @@ public class Readcube : MonoBehaviour
                             Vector3 ray = rayStart.transform.position;
                             RaycastHit hit;
                 
-                            // Does the ray intersect any objects in the layerMask?
+                            // Vérifier si le ray croise un objet du même layerMask "Faces" (6)
                             if (Physics.Raycast(ray, rayTransform.forward, out hit, Mathf.Infinity, layerMask))
                             {
                                 Debug.DrawRay(ray, rayTransform.forward * hit.distance, Color.yellow);
@@ -106,8 +106,7 @@ public class Readcube : MonoBehaviour
              {
                  cubeState = FindObjectOfType<Cubestate>();
          
-                 // set the state of each position in the list of sides so we know
-                 // what color is in what position
+                 // mettre l'état de chaque position des faces pour savoir la couleur de chaque position
                  cubeState.up = ReadFace(upRays, tUp);
                  cubeState.down = ReadFace(downRays, tDown);
                  cubeState.left = ReadFace(leftRays, tLeft);

@@ -30,10 +30,9 @@ public class Cubestate : MonoBehaviour
     {
         foreach (GameObject face in cubeSide)
         {
-            // Attach the parent of each face (the little cube)
-            // to the parent of the 4th index (the little cube in the middle) 
-            // Unless it is already the 4th index
-            if (face != cubeSide[4])
+            
+            // Attacher le parent de chaque face (le petit cube) au parent du petit cube du milieu
+            if (face != cubeSide[4]) // à part si c'est déjà le cas
             {
                 face.transform.parent.transform.parent = cubeSide[4].transform.parent;
             }

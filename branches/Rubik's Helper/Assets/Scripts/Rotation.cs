@@ -38,22 +38,7 @@ public class Rotation : MonoBehaviour
         // Debug.Log("z =" + vecInitial.z);
 
         transform.eulerAngles = vecInitial;
-        //transform.rotation = new Quaternion(vecInitial.x,vecInitial.y,vecInitial.z,vitesse);
-        // Debug.Log("apres x =" + vecInitial.x);
-        // Debug.Log("apres y =" + vecInitial.y);
-        // Debug.Log("apres z =" + vecInitial.z);
-        // print(transform.rotation);
-
-        //transform.eulerAngles += new Vector3(vecInitial.x, vecInitial.y, vecInitial.z) * Time.deltaTime * vitesse;
         
-        //rotationCible.transform.rotation = transform.rotation.eulerAngles.x
-
-
-        //transform.rotation = Quaternion.Lerp(transform.rotation, rotationCible.transform.rotation, Time.deltaTime * vitesse);
-        //transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationCible.transform.rotation, vitesse);
-        //transform.eulerAngles = vecFin;
-        //transform.rotation = Quaternion.Lerp (transform.rotation, new Quaternion.Euler(90, transform.rotation.y, tramsform.rotation.z), Time.deltaTime * speed);
-        //print("is clicked");
     }
     
     // Start is called before the first frame update

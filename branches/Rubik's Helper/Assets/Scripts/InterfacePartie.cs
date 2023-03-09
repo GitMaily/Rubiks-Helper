@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InterfacePartie : MonoBehaviour
 {
-    
+
+    public void boutonRetour()
+    {
+        SceneManager.LoadScene("MenuPrincipal");
+
+    }
+
     public void boutonRealigner()
     {
     

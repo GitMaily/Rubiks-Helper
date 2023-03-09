@@ -49,16 +49,16 @@ public class PivotRotation : MonoBehaviour
         activeSide = side;
         mouseRef = Input.mousePosition;
         dragging = true;
-        // Create a vector to rotate around
+        // Créer un vecteur pour faire tourner
         localForward = Vector3.zero - side[4].transform.parent.transform.localPosition;
     }
     
     private void SpinSide(List<GameObject> side)// utilise la souris pour faire tourner a modifier
         {
-            // reset the rotation
+            // réinitialiser la rotation
             rotation = Vector3.zero;
     
-            // current mouse position minus the last mouse position
+            // la position de la souris actuelle moins celle de la dernière position
             Vector3 mouseOffset = (Input.mousePosition - mouseRef);        
     
     
@@ -89,14 +89,13 @@ public class PivotRotation : MonoBehaviour
             // rotate
             transform.Rotate(rotation, Space.Self);
     
-            // store mouse
             mouseRef = Input.mousePosition;
         }
         
         public void RotateToRightAngle()
             {
                 Vector3 vec = transform.localEulerAngles;
-                // round vec to nearest 90 degrees
+                // on arrondit à l'angle 90 le plus proche
                 vec.x = Mathf.Round(vec.x / 90) * 90;
                 vec.y = Mathf.Round(vec.y / 90) * 90;
                 vec.z = Mathf.Round(vec.z / 90) * 90;
@@ -116,7 +115,7 @@ public class PivotRotation : MonoBehaviour
                 if (Quaternion.Angle(transform.localRotation, targetQuaternion) <= 1)
                 {
                     transform.localRotation = targetQuaternion;
-                    // unparent the little cubes
+                    // dégrouper les petits cubes
                    // cubeState.PutDown(activeSide, transform.parent);
                     readCube.ReadState();
                     //Cubestate.autoRotating = false;

@@ -6,15 +6,15 @@ public class RubiksCube2D : MonoBehaviour
 {
 
     public Transform transformU;
-    public Transform tranformD;
+    public Transform transformD;
     public Transform transformF;
-    public Transform tranformB;
+    public Transform transformB;
     public Transform transformL;
-    public Transform tranformR;
+    public Transform transformR;
     
     RubiksFaces _rubiksFaces;
 
-    private int layerMask = 1 << 8;
+    private int layerMask = 1 << 6;
     // Start is called before the first frame update
     void Start()
     {
