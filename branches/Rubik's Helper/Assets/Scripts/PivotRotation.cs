@@ -137,9 +137,11 @@ public class PivotRotation : MonoBehaviour
         if (Quaternion.Angle(transform.localRotation, targetQuaternion) <= 1)
         {
             transform.localRotation = targetQuaternion;
+            
             // dégrouper les petits cubes
             cubeState.PutDown(activeSide, transform.parent);
             readCube.ReadState();
+            // réinitialiser les booléens qui permettaient d'affirmer la manipulation
             CubeState.autoRotating = false;
             autoRotating = false;
             dragging = false;                                                               
@@ -150,6 +152,18 @@ public class PivotRotation : MonoBehaviour
     public bool IsFunctionRun()
     {
         return isFunctionRunning;
+    }
+
+    public void StartAutoRotate(List<GameObject> side, float angle)
+    {
+        cubeState.PickUp(side);
+        
+        // Trouver l'axe pour faire une rotation
+        Vector3 localForward = Vector3.zero - side[4].transform.parent.transform.localPosition;
+        targetQuaternion = Quaternion.AngleAxis(angle, localForward) * transform.localRotation;
+        activeSide = side;
+        
+        autoRotating = true;
     }
 
 

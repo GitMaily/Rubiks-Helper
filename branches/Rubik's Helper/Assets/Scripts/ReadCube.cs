@@ -34,7 +34,7 @@ public class ReadCube : MonoBehaviour
         cubeMap = FindObjectOfType<CubeMap>();
         //premierRayCast();
         ReadState();
-
+        CubeState.started = true;
 
     }
 

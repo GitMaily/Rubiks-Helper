@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Palmmedia.ReportGenerator.Core.Parser.Analysis;
 using UnityEngine;
 
 public class Rotation : MonoBehaviour
@@ -111,40 +112,41 @@ public class Rotation : MonoBehaviour
         pivot.transform.position = transform.position;
         if (Input.GetKeyDown(rotateUp))
         {
-            RotateCube(Vector3.left);
+            RotateCube(Vector3.left, rotateUp);
         }
         if (Input.GetKeyDown(rotateDown))
         {
-            RotateCube(Vector3.right);
+            RotateCube(Vector3.right, rotateDown);
         }
         if (Input.GetKeyDown(rotateLeft))
         {
-            RotateCube(Vector3.up);
+            RotateCube(Vector3.up, rotateLeft);
         }
         if (Input.GetKeyDown(rotateRight))
         {
-            RotateCube(Vector3.down);
+            RotateCube(Vector3.down, rotateRight);
         }
     }
     
-    void RotateCube(Vector3 axis)
+    void RotateCube(Vector3 axis, KeyCode toucheClavier)
     {
         // Création d'un pivot pour faire pivoter le Rubik's Cube autour
         
         // pivot.transform.position = transform.position;
 
         // Positionnement du Rubik's Cube sur le pivot
-        transform.SetParent(pivot.transform);
+        //transform.SetParent(pivot.transform);
 
-        // Rotation du pivot autour de l'axe approprié
-        pivot.transform.Rotate(axis, 90);
         
-        var step = vitesseRotationAuto * Time.deltaTime;
-        pivot.transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetQuaternion, step);
+        // Rotation du pivot autour de l'axe approprié
+        transform.Rotate(axis, pivot.transform.position.y+ 90);
+        
+        //var step = vitesseRotationAuto * Time.deltaTime;
+        //pivot.transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetQuaternion, step);
 
 
         // Positionnement du Rubik's Cube à son emplacement d'origine
-        transform.SetParent(null);
+        //transform.SetParent(null);
 
         // Destruction du pivot
         //Destroy(pivot);

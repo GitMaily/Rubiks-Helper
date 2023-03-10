@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657892, g: 0.4964128, b: 0.5748173, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4486,6 +4486,8 @@ GameObject:
   - component: {fileID: 868813187}
   - component: {fileID: 868813190}
   - component: {fileID: 868813189}
+  - component: {fileID: 868813191}
+  - component: {fileID: 868813192}
   m_Layer: 0
   m_Name: GrandCube
   m_TagString: Untagged
@@ -4584,6 +4586,35 @@ MonoBehaviour:
   tFront: {fileID: 1561003842}
   tBack: {fileID: 557847405}
   emptyGO: {fileID: 6551527787299416744, guid: 1f57489277b2ae247bfec459f85c531b, type: 3}
+--- !u!114 &868813191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868813182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e4d228cf78997f49ac8a5f6b3bf6635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 1613169483}
+  rotateUp: 273
+  rotateDown: 274
+  rotateLeft: 276
+  rotateRight: 275
+--- !u!114 &868813192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868813182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a98333ec8183a478417961af534dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &880458904
 GameObject:
   m_ObjectHideFlags: 0
@@ -4744,9 +4775,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1942570570}
-        m_TargetAssemblyTypeName: Rotation, Assembly-CSharp
-        m_MethodName: boutonRealigner
+      - m_Target: {fileID: 868813192}
+        m_TargetAssemblyTypeName: RotationAutomatique, Assembly-CSharp
+        m_MethodName: BoutonMelanger
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9039,7 +9070,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1942570568}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e4d228cf78997f49ac8a5f6b3bf6635, type: 3}
   m_Name: 
