@@ -14,7 +14,7 @@ public class RubiksCube2D : MonoBehaviour
     public Transform transformR;
     
     RubiksFaces _rubiksFaces;
-    Cubestate cubeState;
+    CubeState cubeState;
     //private int layerMask = 1 << 6;
     // Start is called before the first frame update
     void Start()
@@ -48,7 +48,7 @@ public class RubiksCube2D : MonoBehaviour
 
     public void Set()
     {
-        cubeState = FindObjectOfType<Cubestate>();
+        cubeState = FindObjectOfType<CubeState>();
         
         UpdateMap(cubeState.front, transformF);
         //UpdateMap(cubeState.back, transformB);

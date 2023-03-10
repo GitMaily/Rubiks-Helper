@@ -10,6 +10,15 @@ public class Rotation : MonoBehaviour
     public Camera camera;
     private Quaternion targetQuaternion;
     private bool autoRotating = false;
+    
+    // Les touches utilisées pour faire tourner le Rubik's Cube
+        public KeyCode rotateUp;
+        public KeyCode rotateDown;
+        public KeyCode rotateLeft;
+        public KeyCode rotateRight;
+        
+        GameObject pivot;
+    
     public void rotationClicDroit()
     {
         float rotationX = Mathf.Round(Input.GetAxis("Mouse X") * vitesse);
@@ -71,7 +80,7 @@ public class Rotation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        pivot = new GameObject("Pivot");
     }
 
     // Update is called once per frame
@@ -92,6 +101,52 @@ public class Rotation : MonoBehaviour
         {
             AutoTurn();
         }
+
+        boutonRotation();
+
+    }
+
+    public void boutonRotation()
+    {
+        pivot.transform.position = transform.position;
+        if (Input.GetKeyDown(rotateUp))
+        {
+            RotateCube(Vector3.left);
+        }
+        if (Input.GetKeyDown(rotateDown))
+        {
+            RotateCube(Vector3.right);
+        }
+        if (Input.GetKeyDown(rotateLeft))
+        {
+            RotateCube(Vector3.up);
+        }
+        if (Input.GetKeyDown(rotateRight))
+        {
+            RotateCube(Vector3.down);
+        }
+    }
+    
+    void RotateCube(Vector3 axis)
+    {
+        // Création d'un pivot pour faire pivoter le Rubik's Cube autour
         
+        // pivot.transform.position = transform.position;
+
+        // Positionnement du Rubik's Cube sur le pivot
+        transform.SetParent(pivot.transform);
+
+        // Rotation du pivot autour de l'axe approprié
+        pivot.transform.Rotate(axis, 90);
+        
+        var step = vitesseRotationAuto * Time.deltaTime;
+        pivot.transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetQuaternion, step);
+
+
+        // Positionnement du Rubik's Cube à son emplacement d'origine
+        transform.SetParent(null);
+
+        // Destruction du pivot
+        //Destroy(pivot);
     }
 }
