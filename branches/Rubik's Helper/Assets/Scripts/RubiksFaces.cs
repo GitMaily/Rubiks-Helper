@@ -13,6 +13,9 @@ public class RubiksFaces : MonoBehaviour
     public List<GameObject> left = new List<GameObject>();
     public List<GameObject> right = new List<GameObject>();
 
+
+    
+    
     // Start is called before the first frame update
     void Start()
     {

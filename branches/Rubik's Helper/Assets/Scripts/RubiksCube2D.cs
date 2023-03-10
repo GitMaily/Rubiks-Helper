@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RubiksCube2D : MonoBehaviour
 {
@@ -13,20 +14,21 @@ public class RubiksCube2D : MonoBehaviour
     public Transform transformR;
     
     RubiksFaces _rubiksFaces;
-
-    private int layerMask = 1 << 6;
+    Cubestate cubeState;
+    //private int layerMask = 1 << 6;
     // Start is called before the first frame update
     void Start()
     {
-        _rubiksFaces = FindObjectOfType<RubiksFaces>();
-        
+        //_rubiksFaces = FindObjectOfType<RubiksFaces>();
+        //cubeState = FindObjectOfType<Cubestate>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        List<GameObject> raycastHitFaces = new List<GameObject>();
+        /*List<GameObject> raycastHitFaces = new List<GameObject>();
         Vector3 raycast = transformF.transform.position;
         RaycastHit raycastHit;
         
@@ -41,6 +43,35 @@ public class RubiksCube2D : MonoBehaviour
             Debug.DrawRay(raycast,transformF.right * 1000, Color.green);
         }
 
-        _rubiksFaces.front = raycastHitFaces;
+        _rubiksFaces.front = raycastHitFaces;*/
+    }
+
+    public void Set()
+    {
+        cubeState = FindObjectOfType<Cubestate>();
+        
+        UpdateMap(cubeState.front, transformF);
+        //UpdateMap(cubeState.back, transformB);
+        //UpdateMap(cubeState.left, transformL);
+        //UpdateMap(cubeState.right, transformR);
+        //UpdateMap(cubeState.up,transformU);
+        //UpdateMap(cubeState.down, transformD);
+    }
+
+    void UpdateMap(List<GameObject> face, Transform side)
+    {
+        int i = 0;
+        foreach (Transform map in side)
+        {
+            if (face[i].name[0] == 'F')
+            {
+                map.GetComponent<Image>().color = new Color(1,0.5f,0,1);
+            }
+
+            if (face[i].name[0] == 'U')
+            {
+                map.GetComponent<Image>().color = Color.white;
+            }
+        }
     }
 }

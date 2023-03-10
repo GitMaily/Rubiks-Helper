@@ -14,16 +14,16 @@ public class PivotRotation : MonoBehaviour
     private Quaternion targetQuaternion;
     private float speed = 300f;
     
-    private float sensibility = 0.4f;
+    private float sensibility = 0.25f;
     private Vector3 rotation;
     
-    private Readcube readCube;
-    private Cubestate cubeState;
+    private ReadCube readCube;
+    private CubeState cubeState;
     // Start is called before the first frame update
     void Start()
     {
-        readCube = FindObjectOfType<Readcube>();
-        cubeState = FindObjectOfType<Cubestate>();
+        readCube = FindObjectOfType<ReadCube>();
+        cubeState = FindObjectOfType<CubeState>();
     }
 
     // Update is called once per frame
@@ -34,16 +34,16 @@ public class PivotRotation : MonoBehaviour
             SpinSide(activeSide);
             if (Input.GetMouseButtonUp(0))
             {
-            dragging = false;
-            RotateToRightAngle();
-           }
-           
+                dragging = false;
+                RotateToRightAngle();
+            }
         }
         if (autoRotating)
         {
            AutoRotate();
-         }
+        }
     }
+    
     public void Rotate(List<GameObject> side)
     {
         activeSide = side;
@@ -53,7 +53,7 @@ public class PivotRotation : MonoBehaviour
         localForward = Vector3.zero - side[4].transform.parent.transform.localPosition;
     }
     
-    private void SpinSide(List<GameObject> side)// utilise la souris pour faire tourner a modifier
+    private void SpinSide(List<GameObject> side)// utilise la souris pour faire tourner 
         {
             // réinitialiser la rotation
             rotation = Vector3.zero;
@@ -72,11 +72,11 @@ public class PivotRotation : MonoBehaviour
             }
             if (side == cubeState.left)
             {
-                rotation.z = (mouseOffset.x + mouseOffset.y) * sensibility * 1;
+                rotation.z = (mouseOffset.x + mouseOffset.y) * sensibility * -1;
             }
             if (side == cubeState.right)
             {
-                rotation.z = (mouseOffset.x + mouseOffset.y) * sensibility * -1;
+                rotation.z = (mouseOffset.x + mouseOffset.y) * sensibility * 1;
             }
             if (side == cubeState.front)
             {
@@ -111,14 +111,14 @@ public class PivotRotation : MonoBehaviour
                 var step = speed * Time.deltaTime;
                 transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetQuaternion, step);
         
-                // if within one degree, set angle to target angle and end the rotation
+                // si à moins de 1°, régler l'angle sur l'angle cible et terminer la rotation
                 if (Quaternion.Angle(transform.localRotation, targetQuaternion) <= 1)
                 {
                     transform.localRotation = targetQuaternion;
                     // dégrouper les petits cubes
-                   // cubeState.PutDown(activeSide, transform.parent);
+                    cubeState.PutDown(activeSide, transform.parent);
                     readCube.ReadState();
-                    //Cubestate.autoRotating = false;
+                    CubeState.autoRotating = false;
                     autoRotating = false;
                     dragging = false;                                                               
                 }

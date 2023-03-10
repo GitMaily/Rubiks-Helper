@@ -5,9 +5,11 @@ using UnityEngine;
 public class Rotation : MonoBehaviour
 {
 
-    public float vitesse = 5f;
+    private float vitesse = 10f;
+    private float vitesseRotationAuto = 300f;
     public Camera camera;
-    public GameObject rotationCible;
+    private Quaternion targetQuaternion;
+    private bool autoRotating = false;
     public void rotationClicDroit()
     {
         float rotationX = Mathf.Round(Input.GetAxis("Mouse X") * vitesse);
@@ -24,7 +26,34 @@ public class Rotation : MonoBehaviour
        
 
     }
+    
 
+    public void autoRealigner()
+    {
+        Vector3 vecInitial = transform.localEulerAngles;
+        vecInitial.x = Mathf.Round(vecInitial.x / 90) * 90;
+        vecInitial.y = Mathf.Round(vecInitial.y / 90) * 90;
+        vecInitial.z = Mathf.Round(vecInitial.z / 90) * 90;
+        
+        targetQuaternion.eulerAngles = vecInitial;
+        autoRotating = true;
+
+    }
+    
+    private void AutoTurn()
+    {
+        var step = vitesseRotationAuto * Time.deltaTime;
+        transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetQuaternion, step);
+        
+        // si à moins de 1°, régler l'angle sur l'angle cible et terminer la rotation
+        if (Quaternion.Angle(transform.localRotation, targetQuaternion) <= 1)
+        {
+            transform.localRotation = targetQuaternion;
+            autoRotating = false;
+
+        }
+    } 
+    
     public void boutonRealigner()
     {
     
@@ -33,12 +62,10 @@ public class Rotation : MonoBehaviour
         vecInitial.y = Mathf.Round(vecInitial.y / 90) * 90;
         vecInitial.z = Mathf.Round(vecInitial.z / 90) * 90;
 
-        // Debug.Log("x =" + vecInitial.x);
-        // Debug.Log("y =" + vecInitial.y);
-        // Debug.Log("z =" + vecInitial.z);
-
         transform.eulerAngles = vecInitial;
         
+        var step = vitesse * Time.deltaTime;
+        transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetQuaternion, step);
     }
     
     // Start is called before the first frame update
@@ -58,14 +85,12 @@ public class Rotation : MonoBehaviour
 
         if (Input.GetMouseButtonUp(1))
         {
+            autoRealigner();
             
-            //boutonRealigner();
-            /*if (transform.rotation != rotationCible.transform.rotation)
-            {
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationCible.transform.rotation, vitesse);
-
-            }*/
-          
+        }
+        if (autoRotating)
+        {
+            AutoTurn();
         }
         
     }
