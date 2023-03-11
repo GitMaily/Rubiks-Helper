@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class RotationAutomatique : MonoBehaviour
 {
-    public static List<string> moveList = new List<string>()
-    {
-       "F","R","L"
-    };
+    public static List<string> moveList = new List<string>();
 
     private readonly List<string> allMoves = new List<string>()
     {
@@ -65,22 +62,22 @@ public class RotationAutomatique : MonoBehaviour
             RotateSide(cubeState.down,90);
 
         }
-        if (move == "L")
+        if (move == "R")
         {
             RotateSide(cubeState.left,-90);
 
         }
-        if (move == "L'")
+        if (move == "R'")
         {
             RotateSide(cubeState.left,90);
 
         }
-        if (move == "R")
+        if (move == "L")
         {
             RotateSide(cubeState.right,-90);
 
         }
-        if (move == "R'")
+        if (move == "L'")
         {
             RotateSide(cubeState.right,90);
 
@@ -128,14 +125,23 @@ public class RotationAutomatique : MonoBehaviour
         }
         
         moveList = moves;
+        //testerRotationCote();
         afficherListeMelange();
+    }
+
+    public void testerRotationCote()
+    {
+        moveList.AddRange(new List<string>(){"U", "D", "L", "R", "B", "F"});
+        
     }
 
     private void afficherListeMelange()
     {
-        foreach(string nomRotation in allMoves)
+        foreach(string nomRotation in moveList)
         {
             Debug.Log(nomRotation);
         }
     }
+    
+    
 }
