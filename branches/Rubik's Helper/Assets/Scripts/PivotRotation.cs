@@ -20,6 +20,8 @@ public class PivotRotation : MonoBehaviour
     private ReadCube readCube;
     private CubeState cubeState;
 
+    private bool rotationAjoutee = false;
+
     public bool isFunctionRunning = false;
     
     // Start is called before the first frame update
@@ -34,33 +36,22 @@ public class PivotRotation : MonoBehaviour
     {
         if (dragging)
         {
-            //isFunctionRunning = true;
             SpinSide(activeSide);
             if (Input.GetMouseButtonUp(0))
             {
-                //isFunctionRunning = false;
                 dragging = false;
                 RotateToRightAngle();
-            }
-            /*else
-            {
-                isFunctionRunning = true;
-            }*/
-        }
-        /*else
-        {
-            isFunctionRunning = false;
-        }*/
+                rotationAjoutee = false;
 
+            }
+        }
         if (autoRotating)
         {
-            //isFunctionRunning = true;
+            
+            //Input.ResetInputAxes();
             AutoRotate();
         }
-        /*else
-        {
-            isFunctionRunning = false;
-        }*/
+        
     }
     
     public void Rotate(List<GameObject> side)
@@ -79,35 +70,125 @@ public class PivotRotation : MonoBehaviour
         rotation = Vector3.zero;
 
         // la position de la souris actuelle moins celle de la dernière position
-        Vector3 mouseOffset = (Input.mousePosition - mouseRef);        
+        Vector3 mouseOffset = (Input.mousePosition - mouseRef);
+        float rotationAmount = (mouseOffset.x + mouseOffset.y) * sensibility;
 
+        string nomMove = "";
 
         if (side == cubeState.up)
         {
             rotation.y = (mouseOffset.x + mouseOffset.y) * sensibility * 1;
+
+            /*if ((mouseOffset.x + mouseOffset.y) > 0)
+            {
+                nomMove = "U";
+
+            }
+            else
+            {
+                nomMove = "U'";
+
+            }*/
+            
+            /*if (rotationAmount > 0)
+            {
+                nomMove = "U";
+
+            }
+            else if (rotationAmount < 0)
+            {
+                nomMove = "U'";
+
+            }*/
+
+            nomMove = "U";
+
+            //Debug.Log("rotation.y = "+rotation.y+", mouseOffset = "+mouseOffset);
+            if (!rotationAjoutee)
+            {
+                RotationAutomatique.AjouterListeMemoire(nomMove);
+                rotationAjoutee = true;
+            }
+            
+            
         }
         if (side == cubeState.down)
         {
             rotation.y = (mouseOffset.x + mouseOffset.y) * sensibility * -1;
+            
+            nomMove = "D";
+
+            if (!rotationAjoutee)
+            {
+                RotationAutomatique.AjouterListeMemoire(nomMove);
+                rotationAjoutee = true;
+            }
         }
         if (side == cubeState.left)
         {
             rotation.z = (mouseOffset.x + mouseOffset.y) * sensibility * -1;
+            
+            nomMove = "R";
+
+            if (!rotationAjoutee)
+            {
+                RotationAutomatique.AjouterListeMemoire(nomMove);
+                rotationAjoutee = true;
+            }
         }
         if (side == cubeState.right)
         {
             rotation.z = (mouseOffset.x + mouseOffset.y) * sensibility * 1;
+            
+            nomMove = "L";
+
+            if (!rotationAjoutee)
+            {
+                RotationAutomatique.AjouterListeMemoire(nomMove);
+                rotationAjoutee = true;
+            }
         }
         if (side == cubeState.front)
         {
             rotation.x = (mouseOffset.x + mouseOffset.y) * sensibility * -1;
+            
+            nomMove = "F";
+
+            if (!rotationAjoutee)
+            {
+                RotationAutomatique.AjouterListeMemoire(nomMove);
+                rotationAjoutee = true;
+            }
         }
         if (side == cubeState.back)
         {
             rotation.x = (mouseOffset.x + mouseOffset.y) * sensibility * 1;
+            
+            nomMove = "B";
+
+            if (!rotationAjoutee)
+            {
+                RotationAutomatique.AjouterListeMemoire(nomMove);
+                rotationAjoutee = true;
+            }
         }
+        
+        // Déterminer le sens de la rotation
+        /*if (nomMove.Equals("U") || nomMove.Equals("D"))
+        {
+            Debug.Log("equals");
+            if (rotationDiff < localRotation.y)
+            {
+                Debug.Log("positive");
+                nomMove = nomMove + "'";
+            }
+        }*/
+        
+        
         // rotate
         transform.Rotate(rotation, Space.Self);
+
+        
 
         mouseRef = Input.mousePosition;
         isFunctionRunning = false;
@@ -131,10 +212,31 @@ public class PivotRotation : MonoBehaviour
         //isFunctionRunning = true;
         dragging = false;
         var step = speed * Time.deltaTime;
-        transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetQuaternion, step);
+        step = Mathf.Clamp(step, 0f, 1f);
+        
+        //Debug.Log("active side :"+activeSide[4]);
+        //Vector3 initialRotation = activeSide[4].transform.localEulerAngles;
 
+        transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetQuaternion, step);
+        
+        //Vector3 currentRotation = activeSide[4].transform.localEulerAngles;
+        /*
+        // Vérifier si la rotation a été effectuée de 90 degrés
+        if ((currentRotation - initialRotation).magnitude == 90f)
+        {
+            // La rotation a été effectuée de 90 degrés
+            // Ajouter le mouvement à la liste mémoire
+            string nomMove = activeSide[4].ToString();
+            if ((currentRotation - initialRotation).y > 0)
+            {
+                Debug.Log("vrai");
+                nomMove += "'";
+            }
+            RotationAutomatique.AjouterListeMemoire(nomMove);
+        }*/
+        
         // si à moins de 1°, régler l'angle sur l'angle cible et terminer la rotation
-        if (Quaternion.Angle(transform.localRotation, targetQuaternion) <= 1)
+        if (Quaternion.Angle(transform.localRotation, targetQuaternion) <= step)
         {
             transform.localRotation = targetQuaternion;
             
@@ -164,6 +266,11 @@ public class PivotRotation : MonoBehaviour
         activeSide = side;
         
         autoRotating = true;
+    }
+
+    public void AjouterRotation()
+    {
+        
     }
 
 

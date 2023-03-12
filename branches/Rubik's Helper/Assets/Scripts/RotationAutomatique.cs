@@ -36,7 +36,7 @@ public class RotationAutomatique : MonoBehaviour
         verificationEtat();
         
         //afficherListeMelange(MoveListInverse());
-        if (moveList.Count > 0 && CubeState.autoRotating == false && CubeState.started)
+        if (moveList.Count > 0 && !CubeState.autoRotating && CubeState.started)
         {
             DoMove(moveList[0]);
             nbRotationAuto++;
@@ -66,6 +66,7 @@ public class RotationAutomatique : MonoBehaviour
     void DoMove(string move)
     {
         // réinitialiser la lecture du cube
+        
         readCube.ReadState();
         CubeState.autoRotating = true;
         CubeState.autoRotatingResoudre = true;
@@ -213,6 +214,27 @@ public class RotationAutomatique : MonoBehaviour
 
     }
     
+    
+    /// <summary>
+    /// Ajoute la rotation inverse de la face effectuée dans la liste mémoire pour le chemin arrière
+    /// </summary>
+    public static void AjouterListeMemoire(string nomMove)
+    {
+        // Inverser la rotation
+        if (nomMove.Contains("'"))
+        {
+            nomMove = nomMove.Replace("'", "");
+            
+        }
+        else
+        {
+            nomMove = nomMove + "'";
+        }
+        
+        // Ajouter dans la liste mémoire
+        moveListMemoire.Add(nomMove);
+    }
+    
     /// <summary>
     /// Convertit la liste du mélange pour obtenir le chemin inverse
     /// </summary>
@@ -226,7 +248,6 @@ public class RotationAutomatique : MonoBehaviour
         Debug.Log("count :"+moveListMemoire.Count);
         for (int i = moveListMemoire.Count-1; i >= 0; i--)
         {
-            Debug.Log("i = "+i);
             listeCheminInverse.Add(moveListMemoire[i]);
         }
         Debug.Log("Affichage listeCheminInverse normalement décroissant");
@@ -328,11 +349,8 @@ public class RotationAutomatique : MonoBehaviour
     /// </summary>
     public void BoutonResoudre()
     {
-        Debug.Log("bouton resoudre cliqué");
-        //List<string> moveListInverse = MoveListInverse();
         List<string> moveListInverse = CheminInverse();
 
-        //afficherListeMelange(moveListInverse);
         moveList = moveListInverse;
         
         moveListMemoire.Clear();
@@ -354,11 +372,8 @@ public class RotationAutomatique : MonoBehaviour
             if (i != moves.Count-1)
             {
                 sb.Append(", ");
-
             }
-
             i++;
-
         }
         
         Debug.Log(sb.ToString());
