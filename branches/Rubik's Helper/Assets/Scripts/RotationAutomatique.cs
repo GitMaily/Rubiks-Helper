@@ -8,6 +8,7 @@ public class RotationAutomatique : MonoBehaviour
 {
     public static List<string> moveList = new List<string>();
     public static List<string> moveListMemoire = new List<string>();
+    public static List<string> manualListMemoire = new List<string>();
     
     private List<string> allMoves = new List<string>()
     {
@@ -19,7 +20,7 @@ public class RotationAutomatique : MonoBehaviour
     private CubeState cubeState;
     private ReadCube readCube;
 
-    public static bool estResolu = true;
+    public static bool clicResoudre = false;
     public static int nbRotationAuto = 0;
     
     // Start is called before the first frame update
@@ -27,6 +28,8 @@ public class RotationAutomatique : MonoBehaviour
     {
         cubeState = FindObjectOfType<CubeState>();
         readCube = FindObjectOfType<ReadCube>();
+        moveListMemoire.Clear();
+        manualListMemoire.Clear();
 
     }
 
@@ -43,6 +46,11 @@ public class RotationAutomatique : MonoBehaviour
             // enlever la première rotation
             moveList.Remove(moveList[0]);
         }
+
+        /*if (PivotRotation.listeRotationsManuelles.Count > 0)
+        {
+            InsererDansMemoire(manualListMemoire);
+        }*/
         /*if (moveListMemoire.Count > 0 && CubeState.autoRotatingResoudre == false && CubeState.startedResoudre)
         {
             DoMove(moveListMemoire[0]);
@@ -55,11 +63,11 @@ public class RotationAutomatique : MonoBehaviour
     {
         if (nbRotationAuto > 0)
         {
-            estResolu = false;
+            clicResoudre = false;
         }
         else
         {
-            estResolu = true;
+            clicResoudre = true;
         }
     }
     
@@ -233,6 +241,10 @@ public class RotationAutomatique : MonoBehaviour
         
         // Ajouter dans la liste mémoire
         moveListMemoire.Add(nomMove);
+        //Debug.Log("le nomMove ajouté :"+nomMove);
+
+        //afficherListeMelange(moveListMemoire);
+
     }
     
     /// <summary>
@@ -241,6 +253,7 @@ public class RotationAutomatique : MonoBehaviour
     /// <returns></returns>
     public List<string> CheminInverse()
     {
+        
         List<string> listeCheminInverse = new List<string>();
         List<string> listeCheminInverse2 = new List<string>();
 
@@ -257,7 +270,7 @@ public class RotationAutomatique : MonoBehaviour
         listeCheminInverse2 = InverserListeMove(listeCheminInverse);
         Debug.Log("Affichage listeCheminInverse normalement décroissant et inversée");
         afficherListeMelange(listeCheminInverse2);
-
+        
         return listeCheminInverse2;
     }
 
@@ -344,22 +357,55 @@ public class RotationAutomatique : MonoBehaviour
         afficherListeMelange(moveListDecroissant);*/
         return moveListDecroissant;
     }
+
+    public bool resolu = false;
+    
     /// <summary>
     /// Résout le Rubik's Cube en utilisant le chemin inverse du mélange réalisé
     /// </summary>
     public void BoutonResoudre()
     {
+        clicResoudre = true;
         List<string> moveListInverse = CheminInverse();
-
-        moveList = moveListInverse;
+        List<string> listeFinale = new List<string>();
+        InverserListeRotationsManuelles();
+        if (manualListMemoire.Count > 0)
+        {
+            Debug.Log("afficher manualListMemoire");
+            afficherListeMelange(manualListMemoire);
+            listeFinale.AddRange(manualListMemoire);
+        }
         
+        listeFinale.AddRange(moveListInverse);
+        moveList = listeFinale;
+        
+        PivotRotation.listeRotationsManuelles.Clear();
         moveListMemoire.Clear();
+        manualListMemoire.Clear();
+        resolu = true;
     }
 
     public void testerRotationCote()
     {
         moveList.AddRange(new List<string>(){"U'", "U", "L'", "L", "B", "B"});
         
+    }
+
+    public void InverserListeRotationsManuelles() //List<string> moveList
+    {
+        
+        List<string> moveListManuelle = PivotRotation.listeRotationsManuelles;
+        
+        List<string> moveListDecroissant = new List<string>();
+        
+        for (int i = moveListManuelle.Count-1; i >= 0; i--)
+        {
+            moveListDecroissant.Add(moveListManuelle[i]);
+        }
+        
+        manualListMemoire = InverserListeMove(moveListDecroissant);
+        
+
     }
 
     private void afficherListeMelange(List<string> moves)
