@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RotationAutomatique : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class RotationAutomatique : MonoBehaviour
     public static bool clicResoudre = false;
     public static int nbRotationAuto = 0;
     
+    public Helper h1;
+    public int etape=0;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -41,11 +45,36 @@ public class RotationAutomatique : MonoBehaviour
         //afficherListeMelange(MoveListInverse());
         if (moveList.Count > 0 && !CubeState.autoRotating && CubeState.started)
         {
+            h1.indicationRelache.text = "On mélange le cube";
             DoMove(moveList[0]);
+            //h1.indicationRelache.text = "Le rubik's cube est en mélange";
             nbRotationAuto++;
             // enlever la première rotation
             moveList.Remove(moveList[0]);
         }
+        
+        else if (moveList.Count == 0)
+        {
+            h1.ListHelper();
+            //h1.indicationRelache.text = "1 er else if de rAuto :";
+            /*if (moveListMemoire.Count >= 0)
+            {
+                h1.indicationRelache.text = "Premier mouvement "+moveListMemoire[0];
+                if (h1.Precedent() == true)
+                {
+                    h1.indicationRelache.text = "Mouvement precedent";
+                }
+                if (h1.Suivant() == true)
+                {
+                    h1.indicationRelache.text = "Mouvement suivant";
+                }
+            }*/
+        }
+        /*else if(moveList.Count<0)
+        {
+            h1.indicationRelache.text ="2nd else if de rAuto";
+        }*/
+
 
         /*if (PivotRotation.listeRotationsManuelles.Count > 0)
         {
@@ -365,6 +394,7 @@ public class RotationAutomatique : MonoBehaviour
     /// </summary>
     public void BoutonResoudre()
     {
+        //etape = 0;
         clicResoudre = true;
         List<string> moveListInverse = CheminInverse();
         List<string> listeFinale = new List<string>();
