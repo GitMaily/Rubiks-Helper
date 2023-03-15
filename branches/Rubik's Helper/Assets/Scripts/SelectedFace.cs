@@ -11,7 +11,7 @@ public class SelectedFace : MonoBehaviour
     private Rotation rotation;
     private int layerMask = 1 << 6;
 
-    
+    public GameObject temp;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,11 +54,32 @@ public class SelectedFace : MonoBehaviour
                     {
                         // Les assembler
                         cubeState.PickUp(cubeSide);
+                        temp = cubeSide[4];
                         // commencer la logique de la rotation
                         cubeSide[4].transform.parent.GetComponent<PivotRotation>().Rotate(cubeSide);
                     }
                 }
             }
         }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            if (temp.name == "U" || temp.name == "D")
+            {
+
+                temp.transform.parent.Rotate(Vector3.up, 90f);
+               
+            }
+            if (temp.name == "F" || temp.name == "B")
+            {
+                temp.transform.parent.Rotate(Vector3.left, 90f);
+                
+            }
+
+            if (temp.name == "L" || temp.name == "R")
+            {
+                temp.transform.parent.Rotate(Vector3.back, 90f);
+
+            }
+        } 
     }
 }
