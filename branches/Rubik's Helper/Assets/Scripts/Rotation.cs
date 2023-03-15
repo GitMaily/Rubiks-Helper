@@ -25,13 +25,14 @@ public class Rotation : MonoBehaviour
     Vector2 currentSwipe;
 
     private bool rotationCubeEnCours = false;
-    
+    public bool swiping;
     public GameObject target;
-
+    PivotRotation pivotRotation;
     #region Rotation dans l'espace avec clic droit
 
     public void rotationClicDroit()
     {
+        swiping = true;
         
         float rotationX = Mathf.Round(Input.GetAxis("Mouse X") * vitesse);
         float rotationY = Mathf.Round(Input.GetAxis("Mouse Y") * vitesse);
@@ -109,24 +110,30 @@ public class Rotation : MonoBehaviour
     void Start()
     {
         pivot = new GameObject("Pivot");
+        pivotRotation = FindObjectOfType<PivotRotation>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(2))
+        if (!Input.GetMouseButton(0) && Input.GetMouseButton(2) && !pivotRotation.dragging)
         {
             rotationCubeEnCours = true;
 
             rotationClicDroit();
 
         }
+        else
+        {
+            swiping = false;
+        }
 
         if (Input.GetMouseButtonUp(2))
         {
             calculerRealignement();
         }
-        if (autoRotating)
+        if (autoRotating && !pivotRotation.dragging)
         {
             AutoRealigner();
         }
@@ -142,8 +149,12 @@ public class Rotation : MonoBehaviour
 
         //boutonRotation();
         //Swipe();
-        RotationSwipe();
 
+        if (!Input.GetMouseButton(0))
+        {
+            RotationSwipe();
+        }
+        
 
     }
 
@@ -198,15 +209,20 @@ public class Rotation : MonoBehaviour
 
     public void RotationSwipe()
     {
-        if (!autoRotating && !rotationCubeEnCours)
+        if (!autoRotating && !rotationCubeEnCours && !pivotRotation.dragging && !CubeState.autoRotating)
         {
             Swipe();
             SwipeFleches();
             if (transform.rotation != target.transform.rotation)
             {
+                swiping = true;
                 var step = vitesseCubeEspace * Time.deltaTime;
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, target.transform.rotation, step);
-            } 
+            }
+            else
+            {
+                swiping = false;
+            }
         }
     }
 
@@ -224,12 +240,12 @@ public class Rotation : MonoBehaviour
     }
     void Swipe()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !pivotRotation.dragging)
         {
             firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             //print(firstPressPos); 
         }
-        if (Input.GetMouseButtonUp(1) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+        if (!pivotRotation.dragging && (Input.GetMouseButtonUp(1) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)))
         {
             secondPresPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             currentSwipe = new Vector2(secondPresPos.x - firstPressPos.x, secondPresPos.y - firstPressPos.y);
@@ -269,7 +285,7 @@ public class Rotation : MonoBehaviour
     }
     void SwipeFleches()
     {
-        if (ToucheClavierFleche())
+        if (ToucheClavierFleche() && !pivotRotation.dragging)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {

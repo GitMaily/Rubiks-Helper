@@ -63,9 +63,6 @@ public class PivotRotation : MonoBehaviour
             if (!rotationAjoutee)
             {
                 facesSelectionnees.Add(nomMove);
-                //Debug.Log("nomMove ajouté :"+nomMove);
-                //Debug.Log("Affichage de facesSelectionnees");
-                //afficherListe(facesSelectionnees);
                 rotationAjoutee = true;
             }
             
@@ -74,7 +71,6 @@ public class PivotRotation : MonoBehaviour
                 dragging = false;
                 RotateToRightAngle();
                 rotationAjoutee = false;
-                //nomMove = DeterminerRotationManuelle();
 
             }
         }
@@ -83,29 +79,9 @@ public class PivotRotation : MonoBehaviour
             
             //Input.ResetInputAxes();
             AutoRotate();
-            //DeterminerRotationManuelle();
 
             
         }
-        //DeterminerRotationManuelle();
-
-    
-        /*AjouterRotationCheminInverseOuNon();
-        
-        Debug.Log("Affichage de listeRotationsManuelles");
-        afficherListe(listeRotationsManuelles);
-        rotationManuelleAjoutee = true;*/
-        
-        //listeRotationsManuelles.Add(DeterminerRotationManuelle());
-
-        /*if (!rotationManuelleAjoutee)
-        {
-            listeRotationsManuelles.Add(DeterminerRotationManuelle());
-            Debug.Log("affichage listeRotationsManuelles dans méthode");
-            afficherListe(listeRotationsManuelles);
-
-            rotationManuelleAjoutee = true;
-        }*/
 
     }
     
@@ -142,7 +118,6 @@ public class PivotRotation : MonoBehaviour
 
             nomMove = "U";
 
-            //Debug.Log("rotation.y = "+rotation.y+", mouseOffset = "+mouseOffset);
             
             
             
@@ -153,11 +128,7 @@ public class PivotRotation : MonoBehaviour
             
             nomMove = "D";
 
-            /*if (!rotationAjoutee)
-            {
-                RotationAutomatique.AjouterListeMemoire(nomMove);
-                rotationAjoutee = true;
-            }*/
+          
         }
         if (side == cubeState.left)
         {
@@ -165,11 +136,7 @@ public class PivotRotation : MonoBehaviour
             
             nomMove = "R";
 
-            /*if (!rotationAjoutee)
-            {
-                RotationAutomatique.AjouterListeMemoire(nomMove);
-                rotationAjoutee = true;
-            }*/
+           
         }
         if (side == cubeState.right)
         {
@@ -177,11 +144,7 @@ public class PivotRotation : MonoBehaviour
             
             nomMove = "L";
 
-            /*if (!rotationAjoutee)
-            {
-                RotationAutomatique.AjouterListeMemoire(nomMove);
-                rotationAjoutee = true;
-            }*/
+           
         }
         if (side == cubeState.front)
         {
@@ -189,11 +152,7 @@ public class PivotRotation : MonoBehaviour
             
             nomMove = "F";
 
-            /*if (!rotationAjoutee)
-            {
-                RotationAutomatique.AjouterListeMemoire(nomMove);
-                rotationAjoutee = true;
-            }*/
+            
         }
         if (side == cubeState.back)
         {
@@ -201,13 +160,7 @@ public class PivotRotation : MonoBehaviour
             
             nomMove = "B";
 
-            /*if (!rotationAjoutee)
-            {
-                RotationAutomatique.AjouterListeMemoire(nomMove);
-                rotationAjoutee = true;
-            }*/
         }
-        
 
         if (!rotationAjoutee)
         {
@@ -256,15 +209,17 @@ public class PivotRotation : MonoBehaviour
         
         
         // si à moins de 1°, régler l'angle sur l'angle cible et terminer la rotation
-        if (Quaternion.Angle(transform.localRotation, targetQuaternion) <= 1)
+        float angle = Quaternion.Angle(transform.localRotation, targetQuaternion);
+        if (angle <= 1)
         {
+            
             transform.localRotation = targetQuaternion;
-
+            //Debug.Log("angle = "+angle);
             // Vérifier si il y a bien eu une rotation
             rotationFinale = transform.rotation.eulerAngles;
             rotationFinaleQuaternion = transform.rotation;
 
-            //if (RotationAutomatique.clicResoudre == false)
+            if (RotationAutomatique.enResolution == false && !CubeState.autoRotating)
             {
                 List<string> rotationManuelle = DeterminerRotationManuelle();
                 if (!rotationManuelle.Equals(""))
@@ -272,39 +227,7 @@ public class PivotRotation : MonoBehaviour
                     listeRotationsManuelles.AddRange(rotationManuelle);
 
                 }
-                
-
             }
-
-            //Debug.Log("listeROtationsManuelles dans autorotate, count ="+listeRotationsManuelles.Count);
-            //afficherListe(listeRotationsManuelles);
-            
-            //DeterminerRotationManuelle();
-
-            /*Debug.Log("rotationInitiale dans autoRotate"+ rotationInitiale);
-            Debug.Log("rotationFinale dans autoRotate"+ rotationFinale);
-            
-            if (rotationInitiale == rotationFinale)
-            {
-                Debug.Log("pas de rotation");
-                facesSelectionnees.Remove(facesSelectionnees[facesSelectionnees.Count-1]);
-            }
-            else
-            {
-                // Il y a eu une rotation
-                // Déterminer l'angle de la rotation
-                Debug.Log("Il y a eu une rotation");
-                
-                Quaternion rotationEffectueeQuaternion = rotationFinaleQuaternion * Quaternion.Inverse(rotationInitialeQuaternion);
-
-                var rotationEffectueeEuler = rotationEffectueeQuaternion.eulerAngles; // 270 = sens horaire, 90 = sens anti-horaire
-
-                Debug.Log("rotationEffectueeQuaternion =" +rotationEffectueeQuaternion);
-                Debug.Log("Angles d'Euler de la rotation effectuée : " + rotationEffectueeEuler);
-                
-                
-
-            }*/
             
             // dégrouper les petits cubes
             cubeState.PutDown(activeSide, transform.parent);
@@ -314,13 +237,8 @@ public class PivotRotation : MonoBehaviour
             autoRotating = false;
             dragging = false;                                                               
         }
-        //isFunctionRunning = false;
     }
 
-    public bool IsFunctionRun()
-    {
-        return isFunctionRunning;
-    }
 
     public void StartAutoRotate(List<GameObject> side, float angle)
     {
@@ -332,6 +250,10 @@ public class PivotRotation : MonoBehaviour
         activeSide = side;
         
         autoRotating = true;
+        
+        //Debug.Log("side of the cube: "+side[4].transform.parent.ToString()+", angle : "+angle);
+
+        
     }
 
     public void AjouterRotationCheminInverseOuNon()
@@ -380,7 +302,7 @@ public class PivotRotation : MonoBehaviour
             var rotationEffectueeEuler = rotationEffectueeQuaternion.eulerAngles; // 270 = sens horaire, 90 = sens anti-horaire
 
             //Debug.Log("rotationEffectueeQuaternion =" + rotationEffectueeQuaternion);
-            Debug.Log("Angles d'Euler de la rotation effectuée : " + rotationEffectueeEuler);
+            //Debug.Log("Angles d'Euler de la rotation effectuée : " + rotationEffectueeEuler);
 
 
             if (facesSelectionnees.Count > 0)
@@ -422,110 +344,286 @@ public class PivotRotation : MonoBehaviour
 
         return rotationManuelleEffectuee;
     }
-    
-    
+
+
+    private List<string> DeterminerSensRotation2(Vector3 rotationEffectueeEuler, string nomMove)
+    {
+        List<string> sensRotations = new List<string>();
+        float epsilon = 0.0001f;
+
+        // Anti-clockwise
+        if (Mathf.Abs(rotationEffectueeEuler.y - 270.0f) < epsilon ||
+            Mathf.Abs(rotationEffectueeEuler.x - 270.0f) < epsilon ||
+            Mathf.Abs(rotationEffectueeEuler.z - 270.0f) < epsilon)
+        {
+            nomMove = nomMove + "'";
+            sensRotations.Add(nomMove);
+            Debug.Log("Ajout de " + nomMove);
+        }
+
+        // Clockwise
+        if (Mathf.Abs(rotationEffectueeEuler.y - 90.0f) < epsilon ||
+            Mathf.Abs(rotationEffectueeEuler.x - 90.0f) < epsilon ||
+            Mathf.Abs(rotationEffectueeEuler.z - 90.0f) < epsilon)
+        {
+            sensRotations.Add(nomMove);
+            Debug.Log("Ajout de " + nomMove);
+        }
+
+        // Double clockwise
+        if (Mathf.Abs(rotationEffectueeEuler.y - 180.0f) < epsilon ||
+            Mathf.Abs(rotationEffectueeEuler.x - 180.0f) < epsilon ||
+            Mathf.Abs(rotationEffectueeEuler.z - 180.0f) < epsilon)
+        {
+            sensRotations.Add(nomMove);
+            sensRotations.Add(nomMove);
+
+            Debug.Log("Ajout de 2* " + nomMove);
+        }
+
+        return sensRotations;
+    }
+
+
+
     private List<string> DeterminerSensRotation(Vector3 rotationEffectueeEuler, string nomMove)
     {
         List<string> sensRotations = new List<string>();
         
+        Debug.Log("rotationEffectueeEuler =:"+rotationEffectueeEuler);
+        
+        while (!IsCubeAtCorrectPosition(transform.parent))
+        {
+            // Attendre ou réaligner le cube
+            Debug.Log("non aligné");
+            Vector3 eulerAngles = transform.parent.rotation.eulerAngles;
+
+            // Round X angle to nearest multiple of 90 degrees
+            float roundedX = Mathf.Round(eulerAngles.x / 90.0f) * 90.0f;
+
+            // Round Y angle to nearest multiple of 90 degrees
+            float roundedY = Mathf.Round(eulerAngles.y / 90.0f) * 90.0f;
+
+            // Round Z angle to nearest multiple of 90 degrees
+            float roundedZ = Mathf.Round(eulerAngles.z / 90.0f) * 90.0f;
+
+            
+            // Set new rotation angles
+            transform.parent.rotation = Quaternion.Euler(roundedX, roundedY, roundedZ);
+            
+            float epsilon = 0.0001f;
+            if (Mathf.Abs(Mathf.Round(eulerAngles.x) - eulerAngles.x) > epsilon)
+            {
+                // L'angle x n'est pas un multiple de 90 degrés, ajuster l'angle
+                eulerAngles.x = Mathf.Round(eulerAngles.x);
+            }
+
+            // Vérifie si l'angle y est un multiple de 90 degrés
+            if (Mathf.Abs(Mathf.Round(eulerAngles.y) - eulerAngles.y) > epsilon)
+            {
+                // L'angle y n'est pas un multiple de 90 degrés, ajuster l'angle
+                eulerAngles.y = Mathf.Round(eulerAngles.y);
+            }
+
+            // Vérifie si l'angle z est un multiple de 90 degrés
+            if (Mathf.Abs(Mathf.Round(eulerAngles.z) - eulerAngles.z) > epsilon)
+            {
+                // L'angle z n'est pas un multiple de 90 degrés, ajuster l'angle
+                eulerAngles.z = Mathf.Round(eulerAngles.z);
+            }
+            
+            transform.parent.rotation = Quaternion.Euler(roundedX, roundedY, roundedZ);
+            
+            
+            
+
+        }
+
+
+        while (!AreAnglesMultiplesOf90(rotationEffectueeEuler))
+        {
+            // Ajuster l'angle x à un multiple de 90 degrés
+            rotationEffectueeEuler.x = Mathf.Round(rotationEffectueeEuler.x / 90.0f) * 90.0f;
+
+            // Ajuster l'angle y à un multiple de 90 degrés
+            rotationEffectueeEuler.y = Mathf.Round(rotationEffectueeEuler.y / 90.0f) * 90.0f;
+
+            // Ajuster l'angle z à un multiple de 90 degrés
+            rotationEffectueeEuler.z = Mathf.Round(rotationEffectueeEuler.z / 90.0f) * 90.0f;
+        }
         // Seulement si l'orientation (rotation) du cube est à (0,0,0) ? J'ai rien dit
         //if (transform.parent.rotation.eulerAngles == Vector3.zero)
+        //if(IsCubeAtCorrectPosition(transform.parent))
+
+        bool estAjoute = false;
+        
         {
             float epsilon = 0.0001f;
 
             // Cas pour U en haut
-            if (Mathf.Abs(rotationEffectueeEuler.y - 270.0f) < epsilon) // Correspond aussi à 3 fois la même rotation
+            if (Mathf.Abs(rotationEffectueeEuler.y - 270.0f) < epsilon && !estAjoute) // Correspond aussi à 3 fois la même rotation
             {
                 // Ajouter un ' pour donner l'inverse
-                Debug.Log("Rotation 270 = anti-clockwise");
+                /*
+                // Debug.Log("Rotation 270 = anti-clockwise");
+                */
                 nomMove = nomMove + "'";
                 sensRotations.Add(nomMove);
                 Debug.Log("Ajout de "+nomMove);
-                
+                estAjoute = true;
 
             }
-            else if(Mathf.Abs(rotationEffectueeEuler.y - 90.0f) < epsilon)
+            else if(Mathf.Abs(rotationEffectueeEuler.y - 90.0f) < epsilon && !estAjoute)
             {
-                Debug.Log("Rotation 90 = clockwise");
+                // Debug.Log("Rotation 90 = clockwise");
                 sensRotations.Add(nomMove);
                 Debug.Log("Ajout de "+nomMove);
+                estAjoute = true;
 
             }
-            else if(Mathf.Abs(rotationEffectueeEuler.y - 180.0f) < epsilon) // Correspond à 2 fois la même rotation
+            else if(Mathf.Abs(rotationEffectueeEuler.y - 180.0f) < epsilon && !estAjoute) // Correspond à 2 fois la même rotation
             {
+                
                 Debug.Log("Rotation 180 = clockwise"); 
                 // Ajouter le mouvement une nouvelle fois
                 sensRotations.Add(nomMove);
                 sensRotations.Add(nomMove);
 
-                Debug.Log("Ajout de 2*"+nomMove);
+                Debug.Log("Ajout de 2 premier U*"+nomMove);
+                estAjoute = true;
 
             }
             
             // Cas pour F à gauche
-            if (Mathf.Abs(rotationEffectueeEuler.x - 270.0f) < epsilon)
+            if (Mathf.Abs(rotationEffectueeEuler.x - 270.0f) < epsilon && !estAjoute )
             {
                 // Ajouter un ' pour donner l'inverse
-                Debug.Log("Rotation 270 = anti-clockwise");
+                // Debug.Log("Rotation 270 = anti-clockwise");
                 sensRotations.Add(nomMove);
                 Debug.Log("Ajout de "+nomMove);
+                estAjoute = true;
 
             }
-            else if(Mathf.Abs(rotationEffectueeEuler.x - 90.0f) < epsilon)
+            else if(Mathf.Abs(rotationEffectueeEuler.x - 90.0f) < epsilon && !estAjoute)
             {
-                Debug.Log("Rotation 90 = clockwise");
+                // Debug.Log("Rotation 90 = clockwise");
                 nomMove = nomMove + "'";
                 sensRotations.Add(nomMove);
                 Debug.Log("Ajout de "+nomMove);
+                estAjoute = true;
 
             }
-            else if(Mathf.Abs(rotationEffectueeEuler.x - 180.0f) < epsilon) // Correspond à 2 fois la même rotation
+            else if(Mathf.Abs(rotationEffectueeEuler.x - 180.0f) < epsilon && !estAjoute) // Correspond à 2 fois la même rotation
             {
-                Debug.Log("Rotation 180 = clockwise"); 
+                // Debug.Log("Rotation 180 = clockwise"); 
                 // Ajouter le mouvement une nouvelle fois
                 sensRotations.Add(nomMove);
                 sensRotations.Add(nomMove);
                 Debug.Log("Ajout de 2*"+nomMove);
+                estAjoute = true;
 
                 
             }
             // Cas pour R à droite
-            if (Mathf.Abs(rotationEffectueeEuler.z - 270.0f) < epsilon)
+            if (Mathf.Abs(rotationEffectueeEuler.z - 270.0f) < epsilon && !estAjoute)
             {
                 // Ajouter un ' pour donner l'inverse
                 //Debug.Log("Rotation 270 = anti-clockwise");
                 sensRotations.Add(nomMove);
                 Debug.Log("Ajout de "+nomMove);
+                estAjoute = true;
 
             }
-            else if(Mathf.Abs(rotationEffectueeEuler.z - 90.0f) < epsilon)
+            else if(Mathf.Abs(rotationEffectueeEuler.z - 90.0f) < epsilon && !estAjoute)
             {
                 //Debug.Log("Rotation 90 = clockwise");
                 nomMove = nomMove + "'";
                 sensRotations.Add(nomMove);
                 Debug.Log("Ajout de "+nomMove);
+                estAjoute = true;
 
             }
-            else if(Mathf.Abs(rotationEffectueeEuler.z - 180.0f) < epsilon) // Correspond à 2 fois la même rotation
+            else if(Mathf.Abs(rotationEffectueeEuler.z - 180.0f) < epsilon && !estAjoute) // Correspond à 2 fois la même rotation
             {
-                Debug.Log("Rotation 180 = clockwise"); 
+                // Debug.Log("Rotation 180 = clockwise"); 
                 // Ajouter le mouvement une nouvelle fois
                 sensRotations.Add(nomMove);
                 sensRotations.Add(nomMove);
                 Debug.Log("Ajout de 2* "+nomMove);
 
-                
+                estAjoute = true;
+
             }
             
         }
+        //else
+        {
+            // Attendre ou réaligner le cube
+            //Debug.Log("non aligné");
+        }
 
+        Debug.Log("count ="+listeRotationsManuelles.Count);
         return sensRotations;
         //return nomMove;
 
     }
     
-    
+    public static bool IsCubeAtCorrectPosition(Transform cubeTransform)
+    {
+        Vector3 eulerAngles = cubeTransform.rotation.eulerAngles;
+        float epsilon = 0.1f;
 
+        if (Mathf.Abs(eulerAngles.x % 90.0f) > epsilon)
+        {
+            // X angle is not a multiple of 90 degrees
+            return false;
+        }
+
+        if (Mathf.Abs(eulerAngles.y % 90.0f) > epsilon)
+        {
+            // Y angle is not a multiple of 90 degrees
+            return false;
+        }
+
+        if (Mathf.Abs(eulerAngles.z % 90.0f) > epsilon)
+        {
+            // Z angle is not a multiple of 90 degrees
+            return false;
+        }
+
+        // All angles are multiples of 90 degrees
+        return true;
+    }
+
+    private bool AreAnglesMultiplesOf90(Vector3 rotationEffectueeEuler)
+    {
+
+        float epsilon = 0.0001f;
+        if (Mathf.Abs(rotationEffectueeEuler.x % 90.0f) > epsilon)
+        {
+            // X angle is not a multiple of 90 degrees
+            return false;
+        }
+
+        if (Mathf.Abs(rotationEffectueeEuler.y % 90.0f) > epsilon)
+        {
+            // Y angle is not a multiple of 90 degrees
+            return false;
+        }
+
+        if (Mathf.Abs(rotationEffectueeEuler.z % 90.0f) > epsilon)
+        {
+            // Z angle is not a multiple of 90 degrees
+            return false;
+        }
+
+        // All angles are multiples of 90 degrees
+        return true;
+    }
+
+    
+    
+    
     private void afficherListe(List<string> moves)
     {
         StringBuilder sb = new StringBuilder();

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2080,7 +2080,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3172083802239233535, guid: 4513c8a3a1fd9564d899f4bae0081e27, type: 3}
       propertyPath: m_Name
-      value: Back
+      value: Front
       objectReference: {fileID: 0}
     - target: {fileID: 7316946646672439587, guid: 4513c8a3a1fd9564d899f4bae0081e27, type: 3}
       propertyPath: m_IsActive
@@ -5208,6 +5208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1613169483}
+  swiping: 0
   target: {fileID: 1573782306}
 --- !u!114 &868813192
 MonoBehaviour:
@@ -7111,7 +7112,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1289143941}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1ad254d4dafc394bbd591a8033b2f02, type: 3}
+  m_Script: {fileID: 11500000, guid: b54aef715236c90468c17f2c9d2f5c05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tempsEcoule: 0
@@ -7647,7 +7648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3172083802239233535, guid: 4513c8a3a1fd9564d899f4bae0081e27, type: 3}
       propertyPath: m_Name
-      value: Left
+      value: Right
       objectReference: {fileID: 0}
     - target: {fileID: 7316946646672439587, guid: 4513c8a3a1fd9564d899f4bae0081e27, type: 3}
       propertyPath: m_IsActive
@@ -9424,7 +9425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3172083802239233535, guid: 4513c8a3a1fd9564d899f4bae0081e27, type: 3}
       propertyPath: m_Name
-      value: Right
+      value: Left
       objectReference: {fileID: 0}
     - target: {fileID: 7316946646672439587, guid: 4513c8a3a1fd9564d899f4bae0081e27, type: 3}
       propertyPath: m_IsActive
@@ -9909,6 +9910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1613169483}
+  swiping: 0
   target: {fileID: 1573782306}
 --- !u!114 &1942570571
 MonoBehaviour:
@@ -10874,7 +10876,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3172083802239233535, guid: 4513c8a3a1fd9564d899f4bae0081e27, type: 3}
       propertyPath: m_Name
-      value: Front
+      value: Back
       objectReference: {fileID: 0}
     - target: {fileID: 7316946646672439587, guid: 4513c8a3a1fd9564d899f4bae0081e27, type: 3}
       propertyPath: m_IsActive

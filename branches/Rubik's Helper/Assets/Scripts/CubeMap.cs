@@ -17,6 +17,13 @@ public class CubeMap : MonoBehaviour
     {
         cubeState2 = FindObjectOfType<CubeState>();
         
+        // UpdateMap(cubeState2.front, front);
+        // UpdateMap(cubeState2.back, back);
+        // UpdateMap(cubeState2.left, left);
+        // UpdateMap(cubeState2.right, right);
+        // UpdateMap(cubeState2.up,up);
+        // UpdateMap(cubeState2.down, down);
+        
         UpdateMap(cubeState2.front, front);
         UpdateMap(cubeState2.back, back);
         UpdateMap(cubeState2.left, left);
@@ -33,7 +40,7 @@ public class CubeMap : MonoBehaviour
             
             if (face[i].name[0] == 'B')
             {
-                map.GetComponent<Image>().color = new Color(1,0.5f,0,1);
+                map.GetComponent<Image>().color = Color.red;
             }
 
             if (face[i].name[0] == 'U')
@@ -54,7 +61,7 @@ public class CubeMap : MonoBehaviour
             }
             if (face[i].name[0] == 'F')
             {
-                map.GetComponent<Image>().color = Color.red;
+                map.GetComponent<Image>().color = new Color(1,0.5f,0,1);
             }
             i++;
 

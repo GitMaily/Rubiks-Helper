@@ -7,6 +7,8 @@ public class SelectedFace : MonoBehaviour
     
     private CubeState cubeState;
     private ReadCube readCube;
+    private PivotRotation pivotRotation;
+    private Rotation rotation;
     private int layerMask = 1 << 6;
 
     
@@ -15,12 +17,14 @@ public class SelectedFace : MonoBehaviour
     {
         readCube = FindObjectOfType<ReadCube>();
         cubeState = FindObjectOfType<CubeState>();
+        pivotRotation = FindObjectOfType<PivotRotation>();
+        rotation = FindObjectOfType<Rotation>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !CubeState.autoRotating && transform.childCount == 27)
+        if (Input.GetMouseButtonDown(0) && !CubeState.autoRotating && transform.childCount == 27 && !pivotRotation.dragging && !rotation.swiping)
         {
        
             // Lire l'état courant du cube

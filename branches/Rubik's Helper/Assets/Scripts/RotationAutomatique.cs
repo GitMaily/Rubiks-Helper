@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class RotationAutomatique : MonoBehaviour
 {
@@ -23,7 +22,7 @@ public class RotationAutomatique : MonoBehaviour
 
     public static bool clicResoudre = false;
     public static int nbRotationAuto = 0;
-    
+    public static bool enResolution;
     public Helper h1;
     public int etape=0;
     
@@ -45,17 +44,15 @@ public class RotationAutomatique : MonoBehaviour
         //afficherListeMelange(MoveListInverse());
         if (moveList.Count > 0 && !CubeState.autoRotating && CubeState.started)
         {
-            h1.indicationRelache.text = "On mélange le cube";
             DoMove(moveList[0]);
-            //h1.indicationRelache.text = "Le rubik's cube est en mélange";
             nbRotationAuto++;
             // enlever la première rotation
             moveList.Remove(moveList[0]);
         }
-        
         else if (moveList.Count == 0)
         {
             h1.ListHelper();
+            enResolution = false;
             //h1.indicationRelache.text = "1 er else if de rAuto :";
             /*if (moveListMemoire.Count >= 0)
             {
@@ -70,12 +67,6 @@ public class RotationAutomatique : MonoBehaviour
                 }
             }*/
         }
-        /*else if(moveList.Count<0)
-        {
-            h1.indicationRelache.text ="2nd else if de rAuto";
-        }*/
-
-
         /*if (PivotRotation.listeRotationsManuelles.Count > 0)
         {
             InsererDansMemoire(manualListMemoire);
@@ -176,6 +167,7 @@ public class RotationAutomatique : MonoBehaviour
     {
         PivotRotation pr = side[4].transform.parent.GetComponent<PivotRotation>();
         pr.StartAutoRotate(side, angle);
+        //Debug.Log("side of the cube: "+side[4].transform.parent.ToString()+", angle : "+angle);
     }
 
     public void BoutonMelanger()
@@ -186,21 +178,18 @@ public class RotationAutomatique : MonoBehaviour
         
         for (int i = 0; i < shuffleLength; i++)
         {
-            //Debug.Log("pour "+i+" :");
-            //afficherListeMelange(moves);
 
             int randomMove = Random.Range(0, allMoves.Count);
             string selection = allMoves[randomMove];
+            
+            
+            // Supprimer les rotations qui s'annulent
             bool estPossible = true;
-
             if (i != 0 && derniereRotation != selection &&
                 (derniereRotation.Contains(selection) || selection.Contains(derniereRotation)))
             {
                 i--;
                 estPossible = false;
-                //afficherListeMelange(moves);
-                //Debug.Log("normalement : "+selection);
-
 
             }
             
@@ -209,12 +198,7 @@ public class RotationAutomatique : MonoBehaviour
                moves.Add(selection);
                derniereRotation = selection; 
             }
-            /*else
-            {
-                Debug.Log("après le test");
-
-                afficherListeMelange(moves);
-            }*/
+           
             
         }
         
@@ -226,9 +210,9 @@ public class RotationAutomatique : MonoBehaviour
             moveListMemoire.Add(moves[i]); 
         }
         //moveListMemoire = moveList;
-        Debug.Log("Liste de rotation de moveListMemoire :");
-        afficherListeMelange(moveListMemoire);
-        Debug.Log("taille moveListMemoire: "+moveListMemoire.Count);
+        // Debug.Log("Liste de rotation de moveListMemoire :");
+        //afficherListeMelange(moveListMemoire);
+        // Debug.Log("taille moveListMemoire: "+moveListMemoire.Count);
         //testerRotationCote();
 
         /*
@@ -287,18 +271,18 @@ public class RotationAutomatique : MonoBehaviour
         List<string> listeCheminInverse2 = new List<string>();
 
         // Mettre la liste du mélange dans l'ordre décroissant
-        Debug.Log("count :"+moveListMemoire.Count);
+        // Debug.Log("count :"+moveListMemoire.Count);
         for (int i = moveListMemoire.Count-1; i >= 0; i--)
         {
             listeCheminInverse.Add(moveListMemoire[i]);
         }
-        Debug.Log("Affichage listeCheminInverse normalement décroissant");
-        afficherListeMelange(listeCheminInverse);
+        // Debug.Log("Affichage listeCheminInverse normalement décroissant");
+        //afficherListeMelange(listeCheminInverse);
         
         // Inverser chaque rotation de la liste
         listeCheminInverse2 = InverserListeMove(listeCheminInverse);
-        Debug.Log("Affichage listeCheminInverse normalement décroissant et inversée");
-        afficherListeMelange(listeCheminInverse2);
+        // Debug.Log("Affichage listeCheminInverse normalement décroissant et inversée");
+        // afficherListeMelange(listeCheminInverse2);
         
         return listeCheminInverse2;
     }
@@ -394,7 +378,7 @@ public class RotationAutomatique : MonoBehaviour
     /// </summary>
     public void BoutonResoudre()
     {
-        //etape = 0;
+        enResolution = true;
         clicResoudre = true;
         List<string> moveListInverse = CheminInverse();
         List<string> listeFinale = new List<string>();
