@@ -201,38 +201,30 @@ public class RotationAutomatique : MonoBehaviour
            
             
         }
+
         
-        moveList = moves;
+        //moveList = moves;
+        moveList.AddRange(moves);
         Debug.Log("Liste de rotation du mélange :");
         afficherListeMelange(moves);
+        
+        
+        // Vérifier s'il existe des rotations manuelles avant le mélange
+        if (PivotRotation.listeRotationsManuelles.Count > 0)
+        {
+            // Ajouter au début des rotations effectuées
+            moveListMemoire.AddRange(PivotRotation.listeRotationsManuelles);
+            
+            // Vider
+            PivotRotation.listeRotationsManuelles.Clear();
+            manualListMemoire.Clear();
+
+        }
+        // Ajouter la liste du mélange dans la liste mémoire des rotations
         for (int i = 0; i < moves.Count; i++)
         {
             moveListMemoire.Add(moves[i]); 
         }
-        //moveListMemoire = moveList;
-        // Debug.Log("Liste de rotation de moveListMemoire :");
-        //afficherListeMelange(moveListMemoire);
-        // Debug.Log("taille moveListMemoire: "+moveListMemoire.Count);
-        //testerRotationCote();
-
-        /*
-        for (int i = 0; i < moveList.Count-1;i++)
-        {
-            if (moveList[i] != moveList[i+1] && (moveList[i].Contains(moveList[i+1]) || moveList[i+1].Contains(moveList[i]) || (i < moveList.Count-2 && moveList[i+2].Contains(moveList[i+1]))))
-            {
-                int randomMove = 0;
-                do
-                {
-                    randomMove = Random.Range(0, allMoves.Count);
-                    
-                } while ( allMoves[randomMove] == (moveList[i]));
-                
-                moveList[i] = allMoves[randomMove];
-            }
-        }
-        */
-
-
     }
     
     
@@ -382,7 +374,11 @@ public class RotationAutomatique : MonoBehaviour
         clicResoudre = true;
         List<string> moveListInverse = CheminInverse();
         List<string> listeFinale = new List<string>();
+        
+        // Inverser
         InverserListeRotationsManuelles();
+        
+        // Ajouter la liste manuelle à la fin de la liste de résolution
         if (manualListMemoire.Count > 0)
         {
             Debug.Log("afficher manualListMemoire");
@@ -392,6 +388,9 @@ public class RotationAutomatique : MonoBehaviour
         
         listeFinale.AddRange(moveListInverse);
         moveList = listeFinale;
+
+        Debug.Log("Affichage de moveList");
+        afficherListeMelange(moveList);
         
         PivotRotation.listeRotationsManuelles.Clear();
         moveListMemoire.Clear();
@@ -417,9 +416,10 @@ public class RotationAutomatique : MonoBehaviour
             moveListDecroissant.Add(moveListManuelle[i]);
         }
         
-        manualListMemoire = InverserListeMove(moveListDecroissant);
+        manualListMemoire.AddRange(InverserListeMove(moveListDecroissant));
         
-
+        Debug.Log("Affichage de manualListMemoire dans Inversement");
+        afficherListeMelange(manualListMemoire);
     }
 
     private void afficherListeMelange(List<string> moves)

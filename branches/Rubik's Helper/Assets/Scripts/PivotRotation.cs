@@ -225,6 +225,7 @@ public class PivotRotation : MonoBehaviour
                 if (!rotationManuelle.Equals(""))
                 {
                     listeRotationsManuelles.AddRange(rotationManuelle);
+                    // Helper ici?
 
                 }
             }
@@ -390,7 +391,7 @@ public class PivotRotation : MonoBehaviour
     {
         List<string> sensRotations = new List<string>();
         
-        Debug.Log("rotationEffectueeEuler =:"+rotationEffectueeEuler);
+        // Debug.Log("rotationEffectueeEuler =:"+rotationEffectueeEuler);
         
         while (!IsCubeAtCorrectPosition(transform.parent))
         {
@@ -469,7 +470,7 @@ public class PivotRotation : MonoBehaviour
                 */
                 nomMove = nomMove + "'";
                 sensRotations.Add(nomMove);
-                Debug.Log("Ajout de "+nomMove);
+                // Debug.Log("Ajout de "+nomMove);
                 estAjoute = true;
 
             }
@@ -477,19 +478,19 @@ public class PivotRotation : MonoBehaviour
             {
                 // Debug.Log("Rotation 90 = clockwise");
                 sensRotations.Add(nomMove);
-                Debug.Log("Ajout de "+nomMove);
+                // Debug.Log("Ajout de "+nomMove);
                 estAjoute = true;
 
             }
             else if(Mathf.Abs(rotationEffectueeEuler.y - 180.0f) < epsilon && !estAjoute) // Correspond à 2 fois la même rotation
             {
                 
-                Debug.Log("Rotation 180 = clockwise"); 
+                // Debug.Log("Rotation 180 = clockwise"); 
                 // Ajouter le mouvement une nouvelle fois
                 sensRotations.Add(nomMove);
                 sensRotations.Add(nomMove);
 
-                Debug.Log("Ajout de 2 premier U*"+nomMove);
+                // Debug.Log("Ajout de 2 premier U*"+nomMove);
                 estAjoute = true;
 
             }
@@ -500,7 +501,7 @@ public class PivotRotation : MonoBehaviour
                 // Ajouter un ' pour donner l'inverse
                 // Debug.Log("Rotation 270 = anti-clockwise");
                 sensRotations.Add(nomMove);
-                Debug.Log("Ajout de "+nomMove);
+                // Debug.Log("Ajout de "+nomMove);
                 estAjoute = true;
 
             }
@@ -509,7 +510,7 @@ public class PivotRotation : MonoBehaviour
                 // Debug.Log("Rotation 90 = clockwise");
                 nomMove = nomMove + "'";
                 sensRotations.Add(nomMove);
-                Debug.Log("Ajout de "+nomMove);
+                // Debug.Log("Ajout de "+nomMove);
                 estAjoute = true;
 
             }
@@ -519,7 +520,7 @@ public class PivotRotation : MonoBehaviour
                 // Ajouter le mouvement une nouvelle fois
                 sensRotations.Add(nomMove);
                 sensRotations.Add(nomMove);
-                Debug.Log("Ajout de 2*"+nomMove);
+                // Debug.Log("Ajout de 2*"+nomMove);
                 estAjoute = true;
 
                 
@@ -530,7 +531,7 @@ public class PivotRotation : MonoBehaviour
                 // Ajouter un ' pour donner l'inverse
                 //Debug.Log("Rotation 270 = anti-clockwise");
                 sensRotations.Add(nomMove);
-                Debug.Log("Ajout de "+nomMove);
+                // Debug.Log("Ajout de "+nomMove);
                 estAjoute = true;
 
             }
@@ -539,7 +540,7 @@ public class PivotRotation : MonoBehaviour
                 //Debug.Log("Rotation 90 = clockwise");
                 nomMove = nomMove + "'";
                 sensRotations.Add(nomMove);
-                Debug.Log("Ajout de "+nomMove);
+                // Debug.Log("Ajout de "+nomMove);
                 estAjoute = true;
 
             }
@@ -549,7 +550,7 @@ public class PivotRotation : MonoBehaviour
                 // Ajouter le mouvement une nouvelle fois
                 sensRotations.Add(nomMove);
                 sensRotations.Add(nomMove);
-                Debug.Log("Ajout de 2* "+nomMove);
+                // Debug.Log("Ajout de 2* "+nomMove);
 
                 estAjoute = true;
 
@@ -562,7 +563,7 @@ public class PivotRotation : MonoBehaviour
             //Debug.Log("non aligné");
         }
 
-        Debug.Log("count ="+listeRotationsManuelles.Count);
+        //Debug.Log("count ="+listeRotationsManuelles.Count);
         return sensRotations;
         //return nomMove;
 
