@@ -101,7 +101,7 @@ public class Helper : MonoBehaviour
     {
 
         etape++;
-        etape++;
+        //etape++;
         //ListHelper();
         /*if (RotationAutomatique.moveList.Count == 0)
         {

@@ -55,12 +55,14 @@ public class Pause : MonoBehaviour
     {
         
         SceneManager.LoadScene("PartieRubiksCube");
+        Time.timeScale = 1f;
         isPaused = false;
     }
 
     public void Quitter()
     {
         SceneManager.LoadScene("MenuPrincipal");
+        Time.timeScale = 1f;
         isPaused = false;
     }
 }
