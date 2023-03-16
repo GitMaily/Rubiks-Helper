@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5552,6 +5552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4f03c64677f2747906ed112c3e845b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  temp: {fileID: 0}
 --- !u!114 &868813189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5618,7 +5619,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   h1: {fileID: 501377999}
   etape: 0
-  resolu: 0
 --- !u!1 &880458904
 GameObject:
   m_ObjectHideFlags: 0
@@ -6146,7 +6146,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 926677341}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12cd4b61c1277674b8c19067e34ab577, type: 3}
+  m_Script: {fileID: 11500000, guid: b0c05d2d4b27846499c274f658da57e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MenuPauseUI: {fileID: 1590512579}
@@ -6909,7 +6909,7 @@ GameObject:
   - component: {fileID: 1081882562}
   - component: {fileID: 1081882561}
   m_Layer: 5
-  m_Name: Text_L
+  m_Name: Text_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6968,7 +6968,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: L
+  m_Text: R
 --- !u!222 &1081882562
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7658,7 +7658,7 @@ Transform:
   m_GameObject: {fileID: 1254786886}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 25}
-  m_LocalScale: {x: 40, y: 20, z: 1}
+  m_LocalScale: {x: 25, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1613169484}
@@ -11389,7 +11389,7 @@ GameObject:
   - component: {fileID: 1950903333}
   - component: {fileID: 1950903332}
   m_Layer: 5
-  m_Name: Text_R
+  m_Name: Text_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11448,7 +11448,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: R
+  m_Text: L
 --- !u!222 &1950903333
 CanvasRenderer:
   m_ObjectHideFlags: 0

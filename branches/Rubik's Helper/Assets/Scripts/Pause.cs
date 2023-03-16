@@ -53,6 +53,7 @@ public class Pause : MonoBehaviour
 
     public void Recommencer()
     {
+        
         SceneManager.LoadScene("PartieRubiksCube");
         isPaused = false;
     }

@@ -222,9 +222,14 @@ public class PivotRotation : MonoBehaviour
             if (RotationAutomatique.enResolution == false && !CubeState.autoRotating)
             {
                 List<string> rotationManuelle = DeterminerRotationManuelle();
-                if (!rotationManuelle.Equals(""))
+                if (!rotationManuelle.Equals("") && rotationManuelle.Count != 0)
                 {
                     listeRotationsManuelles.AddRange(rotationManuelle);
+                    foreach (string move in rotationManuelle)
+                    {
+                        RotationAutomatique.pileRotations.Push(move);
+
+                    }
                     // Helper ici?
 
                 }
@@ -257,15 +262,6 @@ public class PivotRotation : MonoBehaviour
         
     }
 
-    public void AjouterRotationCheminInverseOuNon()
-    {
-        listeRotationsManuelles.AddRange(DeterminerRotationManuelle());
-        Debug.Log("affichage listeRotationsManuelles dans méthode");
-        afficherListe(listeRotationsManuelles);
-        rotationManuelleAjoutee = true;
-
-        //return DeterminerRotationManuelle();
-    }
 
     /// <summary>
     /// Va déterminer la rotation effectuée manuellement

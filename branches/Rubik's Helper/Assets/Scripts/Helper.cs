@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -30,7 +31,9 @@ public class Helper : MonoBehaviour
 
     private PivotRotation pivotRotation;
 
+    public Stack<string> rotationStack;
 
+    
     void Start()
     {
         pivotRotation = FindObjectOfType<PivotRotation>();
@@ -97,6 +100,7 @@ public class Helper : MonoBehaviour
     public void Suivant()
     {
 
+        etape++;
         etape++;
         //ListHelper();
         /*if (RotationAutomatique.moveList.Count == 0)
@@ -337,10 +341,54 @@ else
 
            
         }*/
+        //ListHelper();
+
+
+        // if (RotationAutomatique.pileRotations.Count > 0)
+        // {
+        //     rotationStack = RotationAutomatique.InverserPile(RotationAutomatique.pileRotations);
+        //     
+        //     
+        // }
+
+        //RotationCorrecte();
+    }
+
+    
+    
+    private void afficherListeMelange(List<string> moves, string message)
+    {
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        sb.Append(message + "\n");
+        foreach(string nomRotation in moves)
+        {
+            sb.Append(nomRotation);
+            if (i != moves.Count-1)
+            {
+                sb.Append(", ");
+            }
+            i++;
+        }
         
-       
-        
-        
+        Debug.Log(sb.ToString());
     }
     
+    private void afficherPile(Stack<string> movesPile, string message)
+    {
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        sb.Append(message + "\n");
+        foreach(string nomRotation in movesPile)
+        {
+            sb.Append(nomRotation);
+            if (i != movesPile.Count-1)
+            {
+                sb.Append(", ");
+            }
+            i++;
+        }
+        
+        Debug.Log(sb.ToString());
+    }
 }

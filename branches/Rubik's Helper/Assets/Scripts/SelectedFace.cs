@@ -12,6 +12,7 @@ public class SelectedFace : MonoBehaviour
     private int layerMask = 1 << 6;
 
     public GameObject temp;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +56,7 @@ public class SelectedFace : MonoBehaviour
                         // Les assembler
                         cubeState.PickUp(cubeSide);
                         temp = cubeSide[4];
+
                         // commencer la logique de la rotation
                         cubeSide[4].transform.parent.GetComponent<PivotRotation>().Rotate(cubeSide);
                     }

@@ -6,9 +6,42 @@ using UnityEngine;
 
 public class RotationAutomatique : MonoBehaviour
 {
+    /// <summary>
+    /// La liste de rotation automatique à effectuer
+    /// </summary>
     public static List<string> moveList = new List<string>();
+    /// <summary>
+    /// La liste mémoire du mélange
+    /// </summary>
     public static List<string> moveListMemoire = new List<string>();
+    /// <summary>
+    /// Liste des rotations effectuées manuellement
+    /// </summary>
     public static List<string> manualListMemoire = new List<string>();
+
+    /// <summary>
+    /// La pile des rotations effectuées (pour le mélange)
+    /// </summary>
+    public static Stack<string> pileRotations = new Stack<string>();
+    /// <summary>
+    /// La pile des rotations effectuées stockée en mémoire
+    /// </summary>
+    public static Stack<string> pileRotationsMemoire = new Stack<string>();
+    /// <summary>
+    /// La pile du chemin inverse
+    /// </summary>
+    public static Stack<string> pileCheminInverse = new Stack<string>();
+    
+    
+    /// <summary>
+    /// La pile du mélange
+    /// </summary>
+    public static Stack<string> pileMelanger = new Stack<string>();
+    
+    /// <summary>
+    /// Une pile pour l'aide
+    /// </summary>
+    public static Stack<string> pileAide = new Stack<string>();
     
     private List<string> allMoves = new List<string>()
     {
@@ -39,8 +72,6 @@ public class RotationAutomatique : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        verificationEtat();
-        
         //afficherListeMelange(MoveListInverse());
         if (moveList.Count > 0 && !CubeState.autoRotating && CubeState.started)
         {
@@ -53,45 +84,129 @@ public class RotationAutomatique : MonoBehaviour
         {
             h1.ListHelper();
             enResolution = false;
-            //h1.indicationRelache.text = "1 er else if de rAuto :";
-            /*if (moveListMemoire.Count >= 0)
-            {
-                h1.indicationRelache.text = "Premier mouvement "+moveListMemoire[0];
-                if (h1.Precedent() == true)
-                {
-                    h1.indicationRelache.text = "Mouvement precedent";
-                }
-                if (h1.Suivant() == true)
-                {
-                    h1.indicationRelache.text = "Mouvement suivant";
-                }
-            }*/
+            
         }
-        /*if (PivotRotation.listeRotationsManuelles.Count > 0)
+        
+        // Mélange automatique
+        /*if (pileMelanger.Count > 0 && !CubeState.autoRotating && CubeState.started)
         {
-            InsererDansMemoire(manualListMemoire);
-        }*/
-        /*if (moveListMemoire.Count > 0 && CubeState.autoRotatingResoudre == false && CubeState.startedResoudre)
+            
+            pileRotations.Push(DoMove(pileMelanger.Pop()));
+        }
+        else if (moveList.Count == 0)
         {
-            DoMove(moveListMemoire[0]);
-            // enlever la première rotation
-            moveListMemoire.Remove(moveListMemoire[0]);
+            h1.ListHelper();
+            enResolution = false;
+        }
+        
+        // Résolution automatique
+        if (pileCheminInverse.Count > 0 && !CubeState.autoRotating && CubeState.started)
+        {
+            h1.indicationRelache.text = pileCheminInverse.Peek();
+            DoMove(pileCheminInverse.Pop());
+            //nbRotationAuto++;
+            
+        }
+        else if (pileCheminInverse.Count == 0)
+        {
+            h1.ListHelper();
+            enResolution = false;
+            
         }*/
-    }
 
-    public void verificationEtat()
+        // if (pileRotations.Count > 0)
+        // {
+        //     pileAide = InverserPile(pileRotations);
+        //     h1.indicationRelache.text = pileAide.Peek();
+        // }
+        
+
+        
+        rotationsManuelles();
+        
+        //afficherPile(pileRotations,"Affichage de la pile");
+    }
+    
+    public void BoutonMelanger()
     {
-        if (nbRotationAuto > 0)
+        List<string> moves = new List<string>();
+        int shuffleLength = Random.Range(10, 15);
+        string derniereRotation = "";
+        
+        for (int i = 0; i < shuffleLength; i++)
         {
-            clicResoudre = false;
+
+            int randomMove = Random.Range(0, allMoves.Count);
+            string selection = allMoves[randomMove];
+            
+            
+            // Supprimer les rotations qui s'annulent
+            bool estPossible = true;
+            if (i != 0 && derniereRotation != selection &&
+                (derniereRotation.Contains(selection) || selection.Contains(derniereRotation)))
+            {
+                i--;
+                estPossible = false;
+
+            }
+            
+            if (estPossible)
+            {
+                moves.Add(selection);
+                pileMelanger.Push(selection);
+                pileRotationsMemoire.Push(selection);
+                derniereRotation = selection; 
+            }
         }
-        else
+        //moveList = moves;
+        moveList.AddRange(moves);
+        Debug.Log("Liste de rotation du mélange :");
+        afficherListeMelange(moves);
+
+        //rotationsManuelles();
+        
+        // Ajouter la liste du mélange dans la liste mémoire des rotations
+        for (int i = 0; i < moves.Count; i++)
         {
-            clicResoudre = true;
+            moveListMemoire.Add(moves[i]); 
         }
     }
     
-    void DoMove(string move)
+    /// <summary>
+    /// Résout le Rubik's Cube en utilisant le chemin inverse du mélange réalisé
+    /// </summary>
+    public void BoutonResoudre()
+    {
+        enResolution = true;
+        clicResoudre = true;
+        List<string> moveListInverse = CheminInverse();
+        List<string> listeFinale = new List<string>();
+        CheminInversePile();
+        // Inverser
+        InverserListeRotationsManuelles();
+        
+        // Ajouter la liste manuelle à la fin de la liste de résolution
+        if (manualListMemoire.Count > 0)
+        {
+            Debug.Log("afficher manualListMemoire");
+            afficherListeMelange(manualListMemoire);
+            listeFinale.AddRange(manualListMemoire);
+        }
+        
+        listeFinale.AddRange(moveListInverse);
+        moveList = listeFinale;
+        
+
+        //Debug.Log("Affichage de moveList");
+        //afficherListeMelange(moveList);
+        
+        PivotRotation.listeRotationsManuelles.Clear();
+        moveListMemoire.Clear();
+        manualListMemoire.Clear();
+        pileRotations.Clear();
+    }
+
+    string DoMove(string move)
     {
         // réinitialiser la lecture du cube
         
@@ -161,6 +276,7 @@ public class RotationAutomatique : MonoBehaviour
 
         }
 
+        return move;
     }
 
     void RotateSide(List<GameObject> side, float angle)
@@ -170,45 +286,8 @@ public class RotationAutomatique : MonoBehaviour
         //Debug.Log("side of the cube: "+side[4].transform.parent.ToString()+", angle : "+angle);
     }
 
-    public void BoutonMelanger()
+    public void rotationsManuelles()
     {
-        List<string> moves = new List<string>();
-        int shuffleLength = Random.Range(10, 30);
-        string derniereRotation = "";
-        
-        for (int i = 0; i < shuffleLength; i++)
-        {
-
-            int randomMove = Random.Range(0, allMoves.Count);
-            string selection = allMoves[randomMove];
-            
-            
-            // Supprimer les rotations qui s'annulent
-            bool estPossible = true;
-            if (i != 0 && derniereRotation != selection &&
-                (derniereRotation.Contains(selection) || selection.Contains(derniereRotation)))
-            {
-                i--;
-                estPossible = false;
-
-            }
-            
-            if (estPossible)
-            {
-               moves.Add(selection);
-               derniereRotation = selection; 
-            }
-           
-            
-        }
-
-        
-        //moveList = moves;
-        moveList.AddRange(moves);
-        Debug.Log("Liste de rotation du mélange :");
-        afficherListeMelange(moves);
-        
-        
         // Vérifier s'il existe des rotations manuelles avant le mélange
         if (PivotRotation.listeRotationsManuelles.Count > 0)
         {
@@ -220,38 +299,8 @@ public class RotationAutomatique : MonoBehaviour
             manualListMemoire.Clear();
 
         }
-        // Ajouter la liste du mélange dans la liste mémoire des rotations
-        for (int i = 0; i < moves.Count; i++)
-        {
-            moveListMemoire.Add(moves[i]); 
-        }
     }
-    
-    
-    /// <summary>
-    /// Ajoute la rotation inverse de la face effectuée dans la liste mémoire pour le chemin arrière
-    /// </summary>
-    public static void AjouterListeMemoire(string nomMove)
-    {
-        // Inverser la rotation
-        if (nomMove.Contains("'"))
-        {
-            nomMove = nomMove.Replace("'", "");
-            
-        }
-        else
-        {
-            nomMove = nomMove + "'";
-        }
-        
-        // Ajouter dans la liste mémoire
-        moveListMemoire.Add(nomMove);
-        //Debug.Log("le nomMove ajouté :"+nomMove);
 
-        //afficherListeMelange(moveListMemoire);
-
-    }
-    
     /// <summary>
     /// Convertit la liste du mélange pour obtenir le chemin inverse
     /// </summary>
@@ -280,44 +329,80 @@ public class RotationAutomatique : MonoBehaviour
     }
 
     /// <summary>
-    /// Convertit la liste des rotations du mélange dans l'ordre décroissant puis rend chaque rotation en son inverse
+    /// Convertit la pile des rotations effectuées par le chemin inverse pour résoudre le Rubik's Cube
+    /// L'insère dans pileCheminInverse
     /// </summary>
-    /// <returns>
-    /// La liste inversée du mélange : on obtient le chemin inverse du mélange
-    /// </returns>
-    public List<string> MoveListInverse()
+    /// <returns>La pile du chemin inverse</returns>
+    public Stack<string> CheminInversePile()
     {
-        Debug.Log("movelistinverse running");
-        List<string> moveInverses = new List<string>();
-        Debug.Log("Liste moveListMemoire avant");
-        afficherListeMelange(moveListMemoire);
-        // Convertir en une pile
-        Queue<string> pileMemoire = new Queue<string>(moveListMemoire);
-        // Initialiser une autre pile vide
-        Queue<string> nouvellePile = new Queue<string>();
+        Stack<string> tempQueue = new Stack<string>();
 
-        int taillePileMemoire = pileMemoire.Count;
-        //Debug.Log("taille de la pile mémoire :"+taillePileMemoire);
-        // Empiler la pileMemoire dans la nouvellePile
-        for (int i = 0; i < taillePileMemoire; i++)
+        // Inverser et obtenir une nouvelle pile temp dans l'ordre décroissant
+        while (pileRotations.Count > 0)
         {
-            string moveCourant = pileMemoire.Dequeue(); // dépiler la pileMemoire
-            nouvellePile.Enqueue(moveCourant); // empiler dans la nouvellePile
+            string poppedRotation = pileRotations.Pop();
+
+            if (poppedRotation.Contains("'"))
+            {
+                poppedRotation = poppedRotation.Replace("'", "");
+            }
+            else
+            {
+                poppedRotation += "'";
+            }
+            
+            tempQueue.Push(poppedRotation);
         }
         
-        //Debug.Log("taille de la nouvelle Pile:"+ nouvellePile.Count);
+        // afficherPile(tempQueue, "Affichage de tempQueue");
+        // Empiler dans la pile finale du chemin inverse
 
-        moveInverses = nouvellePile.ToList();
+        // pileCheminInverse = tempQueue;
         
-        Debug.Log("Liste moveInverses avant l'inversement :");
-        afficherListeMelange(moveInverses);
-        
-        InverserListeMove(moveInverses);
-        Debug.Log("Liste moveInverses après inversement :");
-        afficherListeMelange(moveInverses);
-        
-        return moveInverses;
+        while (tempQueue.Count > 0)
+        {
+            pileCheminInverse.Push(tempQueue.Pop());
+        }
+        // afficherPile(pileCheminInverse, "Affichage de pileCheminInverse");
 
+        pileAide = pileCheminInverse;
+        
+        return pileCheminInverse;
+
+
+    }
+
+    public static Stack<string> InverserPile(Stack<string> rotationsPile)
+    {
+        Stack<string> tempStack = new Stack<string>();
+        Stack<string> finalStack = new Stack<string>();
+
+        // Inverser et obtenir une nouvelle pile temp dans l'ordre décroissant
+        while (rotationsPile.Count > 0)
+        {
+            string poppedRotation = rotationsPile.Pop();
+
+            if (poppedRotation.Contains("'"))
+            {
+                poppedRotation = poppedRotation.Replace("'", "");
+            }
+            else
+            {
+                poppedRotation += "'";
+            }
+            
+            tempStack.Push(poppedRotation);
+        }
+        
+        
+        while (tempStack.Count > 0)
+        {
+            finalStack.Push(tempStack.Pop());
+        }
+        
+        
+        
+        return finalStack;
     }
 
     /// <summary>
@@ -337,66 +422,10 @@ public class RotationAutomatique : MonoBehaviour
             }
         }
 
-        /*Debug.Log("entrée dans inverserListeMove avant l'inversement");
-        afficherListeMelange(moveListDecroissant);
-        foreach (string move in moveListDecroissant)
-        {
-            if (move.Contains("'"))
-            {
-                
-                Debug.Log("move contains ' avant :"+move);
-                move.Replace("'", "");
-                Debug.Log("move contains ' apres :"+move);
-
-            }
-            else
-            {
-                Debug.Log("move avant :"+move);
-
-                move.Append('"');
-                Debug.Log("move apres :"+move);
-
-            }
-        }
-        Debug.Log("entrée dans inverserListeMove apres l'inversement");
-        afficherListeMelange(moveListDecroissant);*/
         return moveListDecroissant;
     }
 
-    public bool resolu = false;
     
-    /// <summary>
-    /// Résout le Rubik's Cube en utilisant le chemin inverse du mélange réalisé
-    /// </summary>
-    public void BoutonResoudre()
-    {
-        enResolution = true;
-        clicResoudre = true;
-        List<string> moveListInverse = CheminInverse();
-        List<string> listeFinale = new List<string>();
-        
-        // Inverser
-        InverserListeRotationsManuelles();
-        
-        // Ajouter la liste manuelle à la fin de la liste de résolution
-        if (manualListMemoire.Count > 0)
-        {
-            Debug.Log("afficher manualListMemoire");
-            afficherListeMelange(manualListMemoire);
-            listeFinale.AddRange(manualListMemoire);
-        }
-        
-        listeFinale.AddRange(moveListInverse);
-        moveList = listeFinale;
-
-        Debug.Log("Affichage de moveList");
-        afficherListeMelange(moveList);
-        
-        PivotRotation.listeRotationsManuelles.Clear();
-        moveListMemoire.Clear();
-        manualListMemoire.Clear();
-        resolu = true;
-    }
 
     public void testerRotationCote()
     {
@@ -418,7 +447,7 @@ public class RotationAutomatique : MonoBehaviour
         
         manualListMemoire.AddRange(InverserListeMove(moveListDecroissant));
         
-        Debug.Log("Affichage de manualListMemoire dans Inversement");
+        //Debug.Log("Affichage de manualListMemoire dans Inversement");
         afficherListeMelange(manualListMemoire);
     }
 
@@ -440,6 +469,22 @@ public class RotationAutomatique : MonoBehaviour
     }
     
     
-    
+    private void afficherPile(Stack<string> movesPile, string message)
+    {
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        sb.Append(message + "\n");
+        foreach(string nomRotation in movesPile)
+        {
+            sb.Append(nomRotation);
+            if (i != movesPile.Count-1)
+            {
+                sb.Append(", ");
+            }
+            i++;
+        }
+        
+        Debug.Log(sb.ToString());
+    }
     
 }
