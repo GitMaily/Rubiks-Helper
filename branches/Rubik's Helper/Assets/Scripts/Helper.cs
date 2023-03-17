@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -14,6 +15,9 @@ public class Helper : MonoBehaviour
     public GameObject Toggle;
     public Text indicationClic;
     public Text indicationRelache;
+    public Text nombreDeRotations;
+    public Text indicationListe;
+    public Text indicationEtape;
 
     public RotationAutomatique rAuto;
 
@@ -65,10 +69,24 @@ public class Helper : MonoBehaviour
         indicationRelache.gameObject.SetActive(true);
         indicationRelache.text = "Vous avez relâché la souris";
     }*/
-    
+
+    private bool clicPrecedant;
     public void Precedent()
     {
+        // etape = RotationAutomatique.pileAide.Count-1;
         etape--;
+        // if (etape <= 0)
+        // {
+        //     etape = 0;
+        // }
+        //
+        // clicPrecedant = true;
+        //
+        // List<string> tempList = RotationAutomatique.pileAide.ToList();
+        // indicationListe.text = tempList[etape];
+        
+        
+        
         //ListHelper();
         /*if (RotationAutomatique.moveList.Count == 0)
         {
@@ -96,11 +114,15 @@ public class Helper : MonoBehaviour
 
 
     }
-    
+
+    private bool clicSuivant;
     public void Suivant()
     {
 
+        clicSuivant = true;
         etape++;
+        // List<string> tempList = RotationAutomatique.pileAide.ToList();
+        // indicationListe.text = tempList[etape];
         //etape++;
         //ListHelper();
         /*if (RotationAutomatique.moveList.Count == 0)
@@ -130,6 +152,44 @@ public class Helper : MonoBehaviour
         }*/
     }
 
+    public void ListHelper2()
+    {
+        if (RotationAutomatique.pileAide.Count == 0)
+        {
+            //etape = 0;
+            indicationListe.text = "Vide";
+            listeMemoire = RotationAutomatique.pileAide.ToList();
+            if (listeMemoire.Count > 0)
+            {
+                if (etape <= 0)
+                {
+                    etape = 0;
+                    precedent.interactable = false;
+                    suivant.interactable = true;
+                    indicationListe.text = listeMemoire[0];
+                }
+                else if(etape>=listeMemoire.Count)
+                {
+                    etape = listeMemoire.Count;
+                    precedent.interactable = true;
+                    suivant.interactable = false;
+                    indicationListe.text = listeMemoire[listeMemoire.Count-1];
+                }
+                else
+                {
+                    precedent.interactable = true;
+                    suivant.interactable = true;
+                    indicationListe.text = listeMemoire[etape];
+                }
+                
+            }
+        }
+        else
+        {
+            etape = RotationAutomatique.pileAide.Count;
+        }
+    }
+    
     public void ListHelper()
     {
         if (RotationAutomatique.moveList.Count == 0)
@@ -342,14 +402,25 @@ else
            
         }*/
         //ListHelper();
+        ListHelper2();
+        indicationEtape.text = etape.ToString();
+        
+        Debug.Log(etape);
+        nombreDeRotations.text = RotationAutomatique.pileAide.Count.ToString();
 
+        if (RotationAutomatique.pileAide.Count > 0)
+        {
+            indicationRelache.text = RotationAutomatique.pileAide.Peek();
 
-        // if (RotationAutomatique.pileRotations.Count > 0)
-        // {
-        //     rotationStack = RotationAutomatique.InverserPile(RotationAutomatique.pileRotations);
-        //     
-        //     
-        // }
+        }
+        else
+        {
+            indicationRelache.text = "Rubik's Cube résolu !";
+
+        }
+
+        
+        
 
         //RotationCorrecte();
     }

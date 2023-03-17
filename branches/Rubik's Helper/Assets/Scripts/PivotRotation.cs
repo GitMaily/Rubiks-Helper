@@ -225,11 +225,37 @@ public class PivotRotation : MonoBehaviour
                 if (!rotationManuelle.Equals("") && rotationManuelle.Count != 0)
                 {
                     listeRotationsManuelles.AddRange(rotationManuelle);
-                    foreach (string move in rotationManuelle)
+
+                    // Vérifier si rotation correcte
+                    if (rotationManuelle.Count == 1 && RotationAutomatique.pileAide.Count > 0)
                     {
-                        RotationAutomatique.pileRotations.Push(move);
+                        if (RotationAutomatique.pileAide.Peek() == rotationManuelle[0])
+                        {
+                            Debug.Log("Rotation correcte");
+                            // Correcte, alors ne pas ajouter dans la pileRotation, et dépiler la pileAide
+                            RotationAutomatique.pileAide.Pop();
+                        }
+                        else
+                        {
+                            // Pas le même, alors empiler
+                            foreach (string move in rotationManuelle)
+                            {
+                                RotationAutomatique.pileRotations.Push(move);
+                                RotationAutomatique.pileAide.Push(RotationAutomatique.InverserMove(move));
+                            }
+                        }
 
                     }
+                    else
+                    {
+                        foreach (string move in rotationManuelle)
+                        {
+                            RotationAutomatique.pileRotations.Push(move);
+                            RotationAutomatique.pileAide.Push(RotationAutomatique.InverserMove(move));
+                        }
+                    }
+                    
+                    
                     // Helper ici?
 
                 }

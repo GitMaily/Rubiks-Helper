@@ -32,6 +32,10 @@ public class RotationAutomatique : MonoBehaviour
     /// </summary>
     public static Stack<string> pileCheminInverse = new Stack<string>();
     
+    /// <summary>
+    /// La pile des rotations effectuées en miroir
+    /// </summary>
+    public static Stack<string> pileRotationMiroir = new Stack<string>();
     
     /// <summary>
     /// La pile du mélange
@@ -66,6 +70,10 @@ public class RotationAutomatique : MonoBehaviour
         readCube = FindObjectOfType<ReadCube>();
         moveListMemoire.Clear();
         manualListMemoire.Clear();
+        pileAide.Clear();
+        pileRotations.Clear();
+        pileRotationsMemoire.Clear();
+        
 
     }
 
@@ -73,7 +81,7 @@ public class RotationAutomatique : MonoBehaviour
     void Update()
     {
         //afficherListeMelange(MoveListInverse());
-        if (moveList.Count > 0 && !CubeState.autoRotating && CubeState.started)
+        /*if (moveList.Count > 0 && !CubeState.autoRotating && CubeState.started)
         {
             DoMove(moveList[0]);
             nbRotationAuto++;
@@ -85,34 +93,59 @@ public class RotationAutomatique : MonoBehaviour
             h1.ListHelper();
             enResolution = false;
             
-        }
+        }*/
+        
         
         // Mélange automatique
-        /*if (pileMelanger.Count > 0 && !CubeState.autoRotating && CubeState.started)
+        if (pileMelanger.Count > 0 && !CubeState.autoRotating && CubeState.started)
         {
-            
-            pileRotations.Push(DoMove(pileMelanger.Pop()));
+            string move = DoMove(pileMelanger.Pop());
+            pileRotations.Push(move);
+            pileAide.Push(InverserMove(move)); 
         }
         else if (moveList.Count == 0)
         {
-            h1.ListHelper();
+            //h1.ListHelper();
             enResolution = false;
         }
         
         // Résolution automatique
-        if (pileCheminInverse.Count > 0 && !CubeState.autoRotating && CubeState.started)
+        /*if (pileCheminInverse.Count > 0 && !CubeState.autoRotating && CubeState.started)
         {
             h1.indicationRelache.text = pileCheminInverse.Peek();
             DoMove(pileCheminInverse.Pop());
+            pileAide.Pop();
+
             //nbRotationAuto++;
             
         }
         else if (pileCheminInverse.Count == 0)
         {
-            h1.ListHelper();
+            //h1.ListHelper();
             enResolution = false;
             
         }*/
+        
+        // Résolution automatique avec pileAide
+        if (clicResoudre && pileAide.Count > 0 && !CubeState.autoRotating && CubeState.started)
+        {
+            //h1.indicationRelache.text = pileAide.Peek();
+            DoMove(pileAide.Pop());
+
+            if (pileAide.Count == 0)
+            {
+                clicResoudre = false;
+            }
+        }
+        else if (pileAide.Count == 0)
+        {
+            //h1.ListHelper();
+            enResolution = false;
+            clicResoudre = false;
+
+            
+        }
+        
 
         // if (pileRotations.Count > 0)
         // {
@@ -121,7 +154,9 @@ public class RotationAutomatique : MonoBehaviour
         // }
         
 
-        
+        // afficherPile(pileRotations, "Affichage pileROtations");
+        // afficherPile(pileAide, "Affichage pileAide");
+
         rotationsManuelles();
         
         //afficherPile(pileRotations,"Affichage de la pile");
@@ -181,7 +216,21 @@ public class RotationAutomatique : MonoBehaviour
         clicResoudre = true;
         List<string> moveListInverse = CheminInverse();
         List<string> listeFinale = new List<string>();
+        Stack<string> tempStack = new Stack<string>();
         CheminInversePile();
+
+        //pileCheminInverse = pileAide;
+        // if (pileAide.Count > 0)
+        // {
+        //     tempStack.Push(pileAide.Pop());
+        //
+        // }
+        //
+        // if (tempStack.Count > 0)
+        // {
+        //     pileCheminInverse.Push(tempStack.Pop());
+        //
+        // }
         // Inverser
         InverserListeRotationsManuelles();
         
@@ -365,14 +414,36 @@ public class RotationAutomatique : MonoBehaviour
         }
         // afficherPile(pileCheminInverse, "Affichage de pileCheminInverse");
 
-        pileAide = pileCheminInverse;
+        //pileAide = pileCheminInverse;
         
         return pileCheminInverse;
 
 
     }
 
-    public static Stack<string> InverserPile(Stack<string> rotationsPile)
+    /// <summary>
+    /// Inverse la rotation entrée en paramètre. Ajoute un "'" si c'est pas déjà le cas, le supprime si c'est le cas
+    /// </summary>
+    public static string InverserMove(string move)
+    {
+        if (move.Contains("'"))
+        {
+            move = move.Replace("'", "");
+        }
+        else
+        {
+            move += "'";
+        }
+
+        return move;
+    }
+    
+    /// <summary>
+    /// Inverse la pile entrée en paramètre de sorte à ce qu'elle donne le chemin inverse de cette pile pour résoudre le Rubik's Cube
+    /// </summary>
+    /// <param name="rotationsPile"></param>
+    /// <returns> Le chemin inverse de la pile </returns>
+    public static Stack<string> InverserCheminPile(Stack<string> rotationsPile)
     {
         Stack<string> tempStack = new Stack<string>();
         Stack<string> finalStack = new Stack<string>();
