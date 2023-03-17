@@ -402,10 +402,10 @@ else
            
         }*/
         //ListHelper();
-        ListHelper2();
-        indicationEtape.text = etape.ToString();
+        //ListHelper2();
+        //indicationEtape.text = etape.ToString();
         
-        Debug.Log(etape);
+        //Debug.Log(etape);
         nombreDeRotations.text = RotationAutomatique.pileAide.Count.ToString();
 
         if (RotationAutomatique.pileAide.Count > 0)

@@ -1759,7 +1759,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203105621}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb2da0644992d4f72a00125064ebf324, type: 3}
   m_Name: 
@@ -1821,9 +1821,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 203105623}
-        m_TargetAssemblyTypeName: Helper, Assembly-CSharp
-        m_MethodName: Precedent
+      - m_Target: {fileID: 528389407}
+        m_TargetAssemblyTypeName: AideResolution, Assembly-CSharp
+        m_MethodName: BoutonSuivant
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3521,6 +3521,7 @@ GameObject:
   - component: {fileID: 528389404}
   - component: {fileID: 528389406}
   - component: {fileID: 528389405}
+  - component: {fileID: 528389407}
   m_Layer: 5
   m_Name: PanelHelper2
   m_TagString: Untagged
@@ -3590,6 +3591,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528389403}
   m_CullTransparentMesh: 1
+--- !u!114 &528389407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528389403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c9a8df2b51ed0439ba5d1cae8bdf03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nbEtape: {fileID: 1009565380}
+  indicationRotation: {fileID: 1690378808}
 --- !u!1 &548259949
 GameObject:
   m_ObjectHideFlags: 0
@@ -6323,7 +6338,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950339773}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb2da0644992d4f72a00125064ebf324, type: 3}
   m_Name: 
@@ -6385,9 +6400,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 950339775}
-        m_TargetAssemblyTypeName: Helper, Assembly-CSharp
-        m_MethodName: Precedent
+      - m_Target: {fileID: 528389407}
+        m_TargetAssemblyTypeName: AideResolution, Assembly-CSharp
+        m_MethodName: BoutonPrecedent
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7104,7 +7119,7 @@ GameObject:
   - component: {fileID: 1009565381}
   - component: {fileID: 1009565380}
   m_Layer: 5
-  m_Name: IndicationEtape
+  m_Name: NbEtape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7157,7 +7172,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 5
     m_MaxSize: 50
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -10485,7 +10500,7 @@ GameObject:
   - component: {fileID: 1690378809}
   - component: {fileID: 1690378808}
   m_Layer: 5
-  m_Name: IndicationListe
+  m_Name: IndicationRotation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10538,7 +10553,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 5
     m_MaxSize: 50
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
