@@ -80,8 +80,10 @@ public class RotationAutomatique : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //afficherListeMelange(MoveListInverse());
-        /*if (moveList.Count > 0 && !CubeState.autoRotating && CubeState.started)
+        
+        /*
+         // Méthode avec listes
+         if (moveList.Count > 0 && !CubeState.autoRotating && CubeState.started)
         {
             DoMove(moveList[0]);
             nbRotationAuto++;
@@ -95,6 +97,9 @@ public class RotationAutomatique : MonoBehaviour
             
         }*/
         
+        /*
+         * Méthode avec piles en implémentant l'aide
+         */
         
         // Mélange automatique
         if (pileMelanger.Count > 0 && !CubeState.autoRotating && CubeState.started)
@@ -129,7 +134,6 @@ public class RotationAutomatique : MonoBehaviour
         // Résolution automatique avec pileAide
         if (clicResoudre && pileAide.Count > 0 && !CubeState.autoRotating && CubeState.started)
         {
-            //h1.indicationRelache.text = pileAide.Peek();
             DoMove(pileAide.Pop());
 
             if (pileAide.Count == 0)
@@ -139,27 +143,13 @@ public class RotationAutomatique : MonoBehaviour
         }
         else if (pileAide.Count == 0)
         {
-            //h1.ListHelper();
             enResolution = false;
             clicResoudre = false;
 
             
         }
-        
-
-        // if (pileRotations.Count > 0)
-        // {
-        //     pileAide = InverserPile(pileRotations);
-        //     h1.indicationRelache.text = pileAide.Peek();
-        // }
-        
-
-        // afficherPile(pileRotations, "Affichage pileROtations");
-        // afficherPile(pileAide, "Affichage pileAide");
 
         rotationsManuelles();
-        
-        //afficherPile(pileRotations,"Affichage de la pile");
     }
     
     public void BoutonMelanger()
@@ -216,22 +206,8 @@ public class RotationAutomatique : MonoBehaviour
         clicResoudre = true;
         List<string> moveListInverse = CheminInverse();
         List<string> listeFinale = new List<string>();
-        Stack<string> tempStack = new Stack<string>();
         CheminInversePile();
 
-        //pileCheminInverse = pileAide;
-        // if (pileAide.Count > 0)
-        // {
-        //     tempStack.Push(pileAide.Pop());
-        //
-        // }
-        //
-        // if (tempStack.Count > 0)
-        // {
-        //     pileCheminInverse.Push(tempStack.Pop());
-        //
-        // }
-        // Inverser
         InverserListeRotationsManuelles();
         
         // Ajouter la liste manuelle à la fin de la liste de résolution
