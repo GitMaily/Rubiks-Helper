@@ -11,7 +11,8 @@ public class AideResolution : MonoBehaviour
 
     public Text nbEtape;
     public Text indicationRotation;
-    
+
+    private static List<string> listePile;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,9 +22,19 @@ public class AideResolution : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (RotationAutomatique.pileAide.Count == 0)
+        if (RotationAutomatique.pileAide.Count == 0 && iterateurEtape == 0)
         {
             indicationRotation.text = "Vous pouvez naviguer ici";
+            nbEtape.text = iterateurEtape.ToString();
+
+        }
+
+        if (iterateurEtape != 0 && RotationAutomatique.pileAide.Count < iterateurEtape)
+        {
+            iterateurEtape = RotationAutomatique.pileAide.Count;
+            indicationRotation.text = listePile[iterateurEtape];
+            nbEtape.text = iterateurEtape.ToString();
+
 
         }
         
@@ -31,7 +42,7 @@ public class AideResolution : MonoBehaviour
 
     public void BoutonPrecedent()
     {
-        List<string> listePile = RotationAutomatique.pileAide.ToList();
+        listePile = RotationAutomatique.pileAide.ToList();
         listePile.Reverse();
 
         Debug.Log("bouton précédent cliqué");
@@ -46,6 +57,8 @@ public class AideResolution : MonoBehaviour
         if (iterateurEtape == 0)
         {
             indicationRotation.text = "";
+            nbEtape.text = iterateurEtape.ToString();
+
 
         }
         else
@@ -58,17 +71,19 @@ public class AideResolution : MonoBehaviour
 
     public void BoutonSuivant()
     {
-        List<string> listePile = RotationAutomatique.pileAide.ToList();
+        listePile = RotationAutomatique.pileAide.ToList();
         listePile.Reverse();
         Debug.Log("bouton suivant cliqué");
         //iterateurEtape = RotationAutomatique.pileAide.Count-1;
 
-        if (RotationAutomatique.pileAide.Count > 0 && iterateurEtape < RotationAutomatique.pileAide.Count)
+        if (RotationAutomatique.pileAide.Count > 0 && iterateurEtape < RotationAutomatique.pileAide.Count && iterateurEtape != RotationAutomatique.pileAide.Count)
         {
             iterateurEtape++;
             nbEtape.text = iterateurEtape.ToString();
-        }    
-        indicationRotation.text = listePile[iterateurEtape-1];
+            indicationRotation.text = listePile[iterateurEtape-1];
+
+        }
+        
 
 
     }

@@ -12,17 +12,12 @@ public class CubeMap : MonoBehaviour
     public Transform right;
     public Transform front;
     public Transform back;
-    
+
+    public Transform mapHelper;
     public void Set()
     {
         cubeState2 = FindObjectOfType<CubeState>();
         
-        // UpdateMap(cubeState2.front, front);
-        // UpdateMap(cubeState2.back, back);
-        // UpdateMap(cubeState2.left, left);
-        // UpdateMap(cubeState2.right, right);
-        // UpdateMap(cubeState2.up,up);
-        // UpdateMap(cubeState2.down, down);
         
         UpdateMap(cubeState2.front, front);
         UpdateMap(cubeState2.back, back);
@@ -30,9 +25,12 @@ public class CubeMap : MonoBehaviour
         UpdateMap(cubeState2.right, right);
         UpdateMap(cubeState2.up,up);
         UpdateMap(cubeState2.down, down);
+
+        MapHelper();
+        
     }
     
-    void UpdateMap(List<GameObject> face, Transform side)
+    public void UpdateMap(List<GameObject> face, Transform side)
     {
         int i = 0;
         foreach (Transform map in side)
@@ -70,6 +68,44 @@ public class CubeMap : MonoBehaviour
 
     }
     
+    /// <summary>
+    /// Aide visuelle : va afficher la face 2D de la face à tourner
+    /// </summary>
+    public void MapHelper()
+    {
+        // Savoir quelle est la face à afficher
+        if (RotationAutomatique.pileAide.Count > 0)
+        {
+            string peekMove = RotationAutomatique.pileAide.Peek();
+            
+            // Enlever le "'"
+            if (peekMove.Contains("'"))
+            {
+                peekMove = peekMove.Replace("'", "");
+            }
+
+            switch (peekMove)
+            {
+                case "U": UpdateMap(cubeState2.up, mapHelper);
+                    break;
+                case "D": UpdateMap(cubeState2.down, mapHelper);
+                    break;
+                case "L": UpdateMap(cubeState2.right, mapHelper);
+                    break;
+                case "F": UpdateMap(cubeState2.front, mapHelper);
+                    break;
+                case "R": UpdateMap(cubeState2.left, mapHelper);
+                    break;
+                case "B": UpdateMap(cubeState2.back, mapHelper);
+                    break;
+            }
+
+
+        }
+
+        
+
+    }
     
     
     // Start is called before the first frame update

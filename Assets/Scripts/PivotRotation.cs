@@ -6,13 +6,6 @@ using UnityEngine;
 public class PivotRotation : MonoBehaviour
 {
     
-    public Transform Up;
-    public Transform Down;
-    public Transform Left;
-    public Transform Right;
-    public Transform Front;
-    public Transform Back;
-    
     private List<GameObject> activeSide;
     
     private Vector3 localForward;

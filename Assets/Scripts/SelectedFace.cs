@@ -25,7 +25,7 @@ public class SelectedFace : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !CubeState.autoRotating && transform.childCount == 27 && !pivotRotation.dragging && !rotation.swiping)
+        if (Input.GetMouseButtonDown(0) && !CubeState.autoRotating && transform.childCount == 28 && !pivotRotation.dragging && !rotation.swiping)
         {
        
             // Lire l'état courant du cube
