@@ -17,11 +17,9 @@ public class Helper : MonoBehaviour
     public Text indicationRelache;
     public Text nombreDeRotations;
     public Text indicationListe;
-    public Text indicationEtape;
 
     public RotationAutomatique rAuto;
 
-    public List<string> cheminInverse;
 
     public static int etape;
 
@@ -37,10 +35,23 @@ public class Helper : MonoBehaviour
 
     public Stack<string> rotationStack;
 
+    public Transform up;
+    public Transform down;
+    public Transform left;
+    public Transform right;
+    public Transform front;
+    public Transform back;
+
+    public Canvas canvas;
     
+    CubeState cubeState;
+    CubeMap cubeMap;
     void Start()
     {
         pivotRotation = FindObjectOfType<PivotRotation>();
+        cubeState = FindObjectOfType<CubeState>();
+        cubeMap = FindObjectOfType<CubeMap>();
+
     }
 
     public void AfficheAide()
@@ -339,6 +350,8 @@ else
         
     }*/
 
+       
+        
     void Update()
     {
         /*if (PanelHelper.activeSelf && Input.GetMouseButtonDown(0))
@@ -419,13 +432,51 @@ else
 
         }
 
-        
-        
+        if (!CubeState.autoRotating && RotationAutomatique.pileAide.Count > 0)
+        {
+            AideVisuelleRotation(HoraireOuAntiHoraire());
 
-        //RotationCorrecte();
+        }
+        else
+        {
+            cubeMap.mapHelper.transform.rotation = Quaternion.identity;
+
+        }
+       
+
     }
 
-    
+    public void AideVisuelleRotation(bool estHoraire)
+    {
+        
+        if (estHoraire)
+        {
+            cubeMap.mapHelper.transform.RotateAround(cubeMap.mapHelper.transform.position, -Vector3.forward, 100 * Time.deltaTime);
+            //mapHelper.transform.Rotate(Vector3.forward, -90f, );
+
+        }
+        else
+        {
+            cubeMap.mapHelper.transform.RotateAround(cubeMap.mapHelper.transform.position, Vector3.forward, 100 * Time.deltaTime);
+
+        }
+    }
+
+    private bool HoraireOuAntiHoraire()
+    {
+        bool estHoraire = true;
+
+        string peekMove = RotationAutomatique.pileAide.Peek();
+            
+        // Enlever le "'"
+        if (peekMove.Contains("'"))
+        {
+            estHoraire = false;
+            peekMove = peekMove.Replace("'", "");
+        }
+
+        return estHoraire;
+    }
     
     private void afficherListeMelange(List<string> moves, string message)
     {
