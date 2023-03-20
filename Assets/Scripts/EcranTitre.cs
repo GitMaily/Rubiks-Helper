@@ -10,4 +10,6 @@ public class EcranTitre : MonoBehaviour
         SceneManager.LoadScene("MenuPrincipal");
 
     }
+    
+    
 }
