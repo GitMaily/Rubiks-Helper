@@ -8,7 +8,7 @@ public class InterfacePartie : MonoBehaviour
 
     public void boutonRetour()
     {
-        SceneManager.LoadScene("MenuPrincipal");
+        SceneManager.LoadScene("MenuUI");
 
     }
 
