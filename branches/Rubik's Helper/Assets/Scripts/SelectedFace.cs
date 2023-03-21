@@ -83,5 +83,27 @@ public class SelectedFace : MonoBehaviour
 
             }
         } 
+    
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            if (temp.name == "U" || temp.name == "D")
+            {
+
+                temp.transform.parent.Rotate(Vector3.up, -90f);
+               
+            }
+            if (temp.name == "F" || temp.name == "B")
+            {
+                temp.transform.parent.Rotate(Vector3.left, -90f);
+                
+            }
+
+            if (temp.name == "L" || temp.name == "R")
+            {
+                temp.transform.parent.Rotate(Vector3.back, -90f);
+
+            }
+        } 
+    
     }
 }
