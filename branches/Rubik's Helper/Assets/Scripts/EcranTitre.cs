@@ -7,7 +7,7 @@ public class EcranTitre : MonoBehaviour
 {
     public void boutonCommencer()
     {
-        SceneManager.LoadScene("MenuPrincipal");
+        SceneManager.LoadScene("MenuUI");
 
     }
     

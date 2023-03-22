@@ -10,7 +10,17 @@ public class MenuPrincipal : MonoBehaviour
     public GameObject menuQuitter;
     
     public Animator CameraObject;
+    
+    public AudioSource hoverSound;
+    public AudioSource clickSound;
 
+    public GameObject selectedJouer;
+    public GameObject selectedCharger;
+    public GameObject selectedMiniJeux;
+    //public GameObject selectedParam;
+    public GameObject selectedQuitter;
+
+    
     public void commencerUnePartie()
     {
         //MenuSauvegarde.NumeroSauvegarde = 0;
@@ -21,10 +31,50 @@ public class MenuPrincipal : MonoBehaviour
     public void BoutonJouer(){
         menuQuitter.SetActive(false);
         menuJouer.SetActive(true);
+        
+        selectedJouer.SetActive(true);
+        selectedCharger.SetActive(false);
+        selectedMiniJeux.SetActive(false);
+        //selectedParam.SetActive(false);
+        selectedQuitter.SetActive(false);
     }
 
+    public void BoutonCharger()
+    {
+        SceneManager.LoadScene("ChargementRubik");
+        
+        menuQuitter.SetActive(false);
+        menuJouer.SetActive(false);
+        
+        selectedJouer.SetActive(false);
+        selectedCharger.SetActive(true);
+        selectedMiniJeux.SetActive(false);
+        //selectedParam.SetActive(false);
+        selectedQuitter.SetActive(false);
+    }
+    
+    public void BoutonMiniJeux()
+    {
+        SceneManager.LoadScene("MiniJeu");
+        
+        menuQuitter.SetActive(false);
+        menuJouer.SetActive(false);
+        
+        selectedJouer.SetActive(false);
+        selectedCharger.SetActive(false);
+        selectedMiniJeux.SetActive(true);
+        selectedQuitter.SetActive(false);
+    }
     public void BoutonParametres()
     {
+        menuQuitter.SetActive(false);
+        menuJouer.SetActive(false);
+        
+        selectedJouer.SetActive(false);
+        selectedCharger.SetActive(false);
+        selectedMiniJeux.SetActive(false);
+        selectedQuitter.SetActive(false);
+        
         CameraObject.SetFloat("Animer",1);
 
     }
@@ -38,7 +88,12 @@ public class MenuPrincipal : MonoBehaviour
     public void BoutonQuitter()
     {
         menuQuitter.SetActive(true);
-        //if(extrasMenu) extrasMenu.SetActive(false);
+        
+        selectedJouer.SetActive(false);
+        selectedCharger.SetActive(false);
+        selectedMiniJeux.SetActive(false);
+        //selectedParam.SetActive(false);
+        selectedQuitter.SetActive(true);
     }
 
 
@@ -49,13 +104,34 @@ public class MenuPrincipal : MonoBehaviour
     }
     public void quitterApplication()
     {
-    #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-    #endif
-        Application.Quit();
+        
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+            Application.Quit();
     }
 
 
+    public void SonHover(){
+        hoverSound.Play();
+    }
+
+    public void SonClic()
+    {
+        clickSound.Play();
+    }
+
+
+    public void UpdateVolume()
+    {
+        this.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("Volume");
+    }
+    
+    void Start()
+    {
+        
+    }
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
