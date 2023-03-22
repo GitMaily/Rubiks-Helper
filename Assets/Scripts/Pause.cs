@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class Pause : MonoBehaviour
 
     public static bool isPaused = false;
 
+    private KeyCode keyCode;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,12 @@ public class Pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (PlayerPrefs.HasKey("PauseKey"))
+        {
+            keyCode = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("PauseKey"));
+
+        }
+        if (PlayerPrefs.HasKey("PauseKey")? Input.GetKeyDown(keyCode) : Input.GetKeyDown(KeyCode.Escape))
         {
             if (!isPaused)
             {
