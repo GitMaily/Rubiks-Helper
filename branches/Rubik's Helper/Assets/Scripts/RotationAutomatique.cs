@@ -68,6 +68,11 @@ public class RotationAutomatique : MonoBehaviour
     /// Permet de savoir si l'utilisateur a cliqué sur Mélanger
     /// </summary>
     public static bool clicBouttonMelanger = false;
+
+    /// <summary>
+    /// Savoir si le Rubik's cube est résolu
+    /// </summary>
+    public static bool estResolu = false;
     public Helper h1;
     public int etape=0;
     
@@ -160,8 +165,12 @@ public class RotationAutomatique : MonoBehaviour
         {
             enResolution = false;
             clicResoudre = false;
+        }
 
-            
+        // Savoir si c'est résolu
+        if (pileAide.Count == 0 && clicBouttonMelanger)
+        {
+            estResolu = true;
         }
 
         rotationsManuelles();

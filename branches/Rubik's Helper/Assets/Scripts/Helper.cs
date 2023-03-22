@@ -424,26 +424,24 @@ else
         if (RotationAutomatique.pileAide.Count > 0)
         {
             indicationRelache.text = RotationAutomatique.pileAide.Peek();
-
+        }
+        else if (RotationAutomatique.estResolu)
+        {
+            indicationRelache.text = "Rubik's Cube résolu !";
         }
         else
         {
-            indicationRelache.text = "Rubik's Cube résolu !";
-
+            indicationRelache.text = "Veuillez mélanger le Rubik's cube";
         }
 
         if (!CubeState.autoRotating && RotationAutomatique.pileAide.Count > 0)
         {
             AideVisuelleRotation(HoraireOuAntiHoraire());
-
         }
         else
         {
             cubeMap.mapHelper.transform.rotation = Quaternion.identity;
-
         }
-       
-
     }
 
     public void AideVisuelleRotation(bool estHoraire)
