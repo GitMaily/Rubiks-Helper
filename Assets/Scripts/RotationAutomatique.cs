@@ -60,6 +60,14 @@ public class RotationAutomatique : MonoBehaviour
     public static bool clicResoudre = false;
     public static int nbRotationAuto = 0;
     public static bool enResolution;
+    /// <summary>
+    /// Permet de savoir si le Rubik's est mélangé
+    /// </summary>
+    public static bool estMelanger = false;
+    /// <summary>
+    /// Permet de savoir si l'utilisateur a cliqué sur Mélanger
+    /// </summary>
+    public static bool clicBouttonMelanger = false;
     public Helper h1;
     public int etape=0;
     
@@ -106,12 +114,19 @@ public class RotationAutomatique : MonoBehaviour
         {
             string move = DoMove(pileMelanger.Pop());
             pileRotations.Push(move);
-            pileAide.Push(InverserMove(move)); 
+            pileAide.Push(InverserMove(move));
+            estMelanger = false;
         }
         else if (moveList.Count == 0)
         {
             //h1.ListHelper();
             enResolution = false;
+        }
+
+        // Savoir si c'est mélangé
+        if (pileMelanger.Count == 0 && clicBouttonMelanger)
+        {
+            estMelanger = true;
         }
         
         // Résolution automatique
@@ -194,6 +209,20 @@ public class RotationAutomatique : MonoBehaviour
         for (int i = 0; i < moves.Count; i++)
         {
             moveListMemoire.Add(moves[i]); 
+        }
+        
+        //estMelanger = true;
+        //clicBouttonMelanger = true;
+        
+        //Utiliser au cas où on clique plusieurs fois sur Mélanger
+        if (clicBouttonMelanger)
+        {
+            clicBouttonMelanger = false;
+        }
+
+        if (!clicBouttonMelanger)
+        {
+            clicBouttonMelanger = true;
         }
     }
     
