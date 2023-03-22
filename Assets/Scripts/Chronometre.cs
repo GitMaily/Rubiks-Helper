@@ -13,13 +13,8 @@ public class Chronometre : MonoBehaviour
     /// Texte pour le chrono
     /// </summary>
     public Text textTemps;
+    
 
-    /*
-    /// <summary>
-    /// Savoir si le Rubik's cube est résolu
-    /// </summary>
-    public static bool estResolu = false;
-    */
     
     // Start is called before the first frame update
     void Start()
@@ -30,7 +25,7 @@ public class Chronometre : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (RotationAutomatique.estMelanger)
+        if (RotationAutomatique.estMelanger && !RotationAutomatique.estResolu)
         {
             tempsEcoule += Time.deltaTime;
             int minutes = 0;
@@ -39,6 +34,10 @@ public class Chronometre : MonoBehaviour
             secondes = Mathf.FloorToInt(tempsEcoule - minutes * 60);
             string formatTextTemps = string.Format("{0:00}:{1:00}", minutes, secondes);
             textTemps.text = formatTextTemps;
+        }
+        else if (RotationAutomatique.estMelanger && RotationAutomatique.estResolu)
+        {
+            tempsEcoule += 0f;
         }
         else
         {
