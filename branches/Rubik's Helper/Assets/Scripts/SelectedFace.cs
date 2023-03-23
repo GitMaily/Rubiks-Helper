@@ -10,6 +10,7 @@ public class SelectedFace : MonoBehaviour
     private PivotRotation pivotRotation;
     private Rotation rotation;
     private int layerMask = 1 << 6;
+    public AudioSource audioSource;
 
     public GameObject temp;
 
@@ -25,7 +26,7 @@ public class SelectedFace : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !CubeState.autoRotating && transform.childCount == 28 && !pivotRotation.dragging && !rotation.swiping)
+        if (!Pause.isPaused && Input.GetMouseButtonDown(0) && !CubeState.autoRotating && transform.childCount == 28 && !pivotRotation.dragging && !rotation.swiping)
         {
        
             // Lire l'état courant du cube
@@ -59,6 +60,8 @@ public class SelectedFace : MonoBehaviour
 
                         // commencer la logique de la rotation
                         cubeSide[4].transform.parent.GetComponent<PivotRotation>().Rotate(cubeSide);
+                        audioSource.Play();
+
                     }
                 }
             }

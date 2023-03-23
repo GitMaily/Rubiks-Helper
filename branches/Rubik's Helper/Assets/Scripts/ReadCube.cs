@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ReadCube : MonoBehaviour
 {
@@ -22,8 +23,8 @@ public class ReadCube : MonoBehaviour
     CubeState cubeState2;
     CubeMap cubeMap;
     public GameObject emptyGO;
-    
-    
+
+    public GameObject helpToggle;
     
     // Start is called before the first frame update
     void Start()
@@ -151,7 +152,9 @@ public class ReadCube : MonoBehaviour
         cubeState2.right = ReadFace(rightRays, tRight);
         cubeState2.front = ReadFace(frontRays, tFront);
         cubeState2.back = ReadFace(backRays, tBack);
-         
+
+
+        
         cubeMap.Set();
          
     }

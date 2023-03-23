@@ -43,7 +43,7 @@ public class AideResolution : MonoBehaviour
     public void BoutonPrecedent()
     {
         listePile = RotationAutomatique.pileAide.ToList();
-        listePile.Reverse();
+        // listePile.Reverse();
 
         Debug.Log("bouton précédent cliqué");
         //iterateurEtape = RotationAutomatique.pileAide.Count-1;
@@ -72,7 +72,7 @@ public class AideResolution : MonoBehaviour
     public void BoutonSuivant()
     {
         listePile = RotationAutomatique.pileAide.ToList();
-        listePile.Reverse();
+        // listePile.Reverse();
         Debug.Log("bouton suivant cliqué");
         //iterateurEtape = RotationAutomatique.pileAide.Count-1;
 
