@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 
 public class ChangeFaceColor : MonoBehaviour, IEventSystemHandler
@@ -68,6 +69,10 @@ public class ChangeFaceColor : MonoBehaviour, IEventSystemHandler
         }
     }
 
+    public void BoutonRetour()
+    {
+        SceneManager.LoadScene("MenuUI");
+    }
     
     /*public Button[] buttons; // Tableau de chaque bouton de couleur
 

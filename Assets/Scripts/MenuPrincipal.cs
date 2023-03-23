@@ -19,7 +19,6 @@ public class MenuPrincipal : MonoBehaviour
     public GameObject selectedMiniJeux;
     //public GameObject selectedParam;
     public GameObject selectedQuitter;
-
     
     public void commencerUnePartie()
     {
@@ -33,6 +32,19 @@ public class MenuPrincipal : MonoBehaviour
         menuJouer.SetActive(true);
         
         selectedJouer.SetActive(true);
+        selectedCharger.SetActive(false);
+        selectedMiniJeux.SetActive(false);
+        //selectedParam.SetActive(false);
+        selectedQuitter.SetActive(false);
+    }
+
+    public void BoutonColorier()
+    {
+        SceneManager.LoadScene("CreerRubiksCube");
+        menuQuitter.SetActive(false);
+        menuJouer.SetActive(false);
+        
+        selectedJouer.SetActive(false);
         selectedCharger.SetActive(false);
         selectedMiniJeux.SetActive(false);
         //selectedParam.SetActive(false);
@@ -55,7 +67,7 @@ public class MenuPrincipal : MonoBehaviour
     
     public void BoutonMiniJeux()
     {
-        SceneManager.LoadScene("MeilleurScore");
+        SceneManager.LoadScene("MenuMiniJeux");
         
         menuQuitter.SetActive(false);
         menuJouer.SetActive(false);
@@ -111,7 +123,17 @@ public class MenuPrincipal : MonoBehaviour
             Application.Quit();
     }
 
-
+    public void BoutonRecords()
+    {
+        SceneManager.LoadScene("MeilleurScore");
+        
+        menuQuitter.SetActive(false);
+        selectedJouer.SetActive(false);
+        selectedCharger.SetActive(false);
+        selectedMiniJeux.SetActive(false);
+        //selectedParam.SetActive(false);
+        selectedQuitter.SetActive(false);
+    }
     public void SonHover(){
         hoverSound.Play();
     }

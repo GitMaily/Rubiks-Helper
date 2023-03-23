@@ -3216,10 +3216,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1550754997}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: Change_scene
-        m_Mode: 3
+      - m_Target: {fileID: 264435947}
+        m_TargetAssemblyTypeName: ChangeFaceColor, Assembly-CSharp
+        m_MethodName: BoutonRetour
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
