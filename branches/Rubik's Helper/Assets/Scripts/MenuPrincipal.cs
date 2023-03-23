@@ -55,7 +55,7 @@ public class MenuPrincipal : MonoBehaviour
     
     public void BoutonMiniJeux()
     {
-        SceneManager.LoadScene("MiniJeu");
+        SceneManager.LoadScene("MenuMiniJeux");
         
         menuQuitter.SetActive(false);
         menuJouer.SetActive(false);
