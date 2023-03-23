@@ -14,6 +14,8 @@ public class Chronometre : MonoBehaviour
     /// </summary>
     public Text textTemps;
     
+    public static string scoreFinal;
+    
 
     
     // Start is called before the first frame update
@@ -25,23 +27,29 @@ public class Chronometre : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        scoreFinal = null;
         if (RotationAutomatique.estMelanger && !RotationAutomatique.estResolu)
         {
             tempsEcoule += Time.deltaTime;
-            int minutes = 0;
-            minutes = Mathf.FloorToInt(tempsEcoule / 60F);
-            int secondes = 0;
-            secondes = Mathf.FloorToInt(tempsEcoule - minutes * 60);
-            string formatTextTemps = string.Format("{0:00}:{1:00}", minutes, secondes);
+            string formatTextTemps = FormatTextTemps(tempsEcoule);
             textTemps.text = formatTextTemps;
+            scoreFinal = null;
         }
-        else if (RotationAutomatique.estMelanger && RotationAutomatique.estResolu)
+        else if (RotationAutomatique.estResolu)
         {
             tempsEcoule += 0f;
+            scoreFinal = FormatTextTemps(tempsEcoule);
         }
         else
         {
             tempsEcoule = 0f;
         }
+    }
+    
+    private string FormatTextTemps(float temps)
+    {
+        int minutes = Mathf.FloorToInt(tempsEcoule / 60F);
+        int secondes = Mathf.FloorToInt(tempsEcoule - minutes * 60);
+        return string.Format("{0:00}:{1:00}", minutes, secondes);
     }
 }
