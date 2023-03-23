@@ -17,6 +17,9 @@ public class CubeState : MonoBehaviour
     public static bool startedResoudre = false;
     public void PickUp(List<GameObject> cubeSide)
     {
+        
+        // Pour régler les problèmes de bugs d'affichage des petits cube quand la vitesse de rotation est trop élevée pour la machine
+        //StartCoroutine(PauseBug());
         foreach (GameObject face in cubeSide)
         {
             
@@ -26,6 +29,7 @@ public class CubeState : MonoBehaviour
                 face.transform.parent.transform.parent = cubeSide[4].transform.parent;
             }
         }
+
     }
 
 
@@ -38,8 +42,17 @@ public class CubeState : MonoBehaviour
                 littleCube.transform.parent.transform.parent = pivot;
             }
         }
+
     }
     
+    IEnumerator PauseBug()
+    {
+        Debug.Log("Starting PauseBug coroutine...");
+
+        yield return new WaitForSeconds(1f);
+        Debug.Log("PauseBug coroutine finished.");
+
+    }
     
     // Start is called before the first frame update
     void Start()

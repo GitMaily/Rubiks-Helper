@@ -6467,6 +6467,7 @@ GameObject:
   - component: {fileID: 868813189}
   - component: {fileID: 868813191}
   - component: {fileID: 868813192}
+  - component: {fileID: 868813193}
   m_Layer: 0
   m_Name: GrandCube
   m_TagString: Untagged
@@ -6598,6 +6599,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   h1: {fileID: 501377999}
   etape: 0
+--- !u!114 &868813193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868813182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c1ca11f3cf9db41b13d6218d36088f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indicationPhrase: {fileID: 310531747}
+  nomMotifCourant: 
 --- !u!1 &880458904
 GameObject:
   m_ObjectHideFlags: 0
@@ -6688,7 +6703,7 @@ GameObject:
   - component: {fileID: 892875019}
   - component: {fileID: 892875022}
   m_Layer: 5
-  m_Name: BoutonMelanger
+  m_Name: BoutonRecommencer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6712,8 +6727,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -113, y: 463.95}
-  m_SizeDelta: {x: 219.09998, y: 62.358}
+  m_AnchoredPosition: {x: -172.06274, y: 463.95}
+  m_SizeDelta: {x: 337.2254, y: 62.358}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &892875019
 MonoBehaviour:
@@ -6759,9 +6774,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 868813192}
-        m_TargetAssemblyTypeName: RotationAutomatique, Assembly-CSharp
-        m_MethodName: BoutonMelanger
+      - m_Target: {fileID: 868813193}
+        m_TargetAssemblyTypeName: Patterns, Assembly-CSharp
+        m_MethodName: boutonRecommencer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8182,7 +8197,7 @@ GameObject:
   - component: {fileID: 1060738372}
   - component: {fileID: 1060738371}
   m_Layer: 5
-  m_Name: TextMelanger
+  m_Name: TextRecommencer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8228,7 +8243,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "M\xE9langer"
+  m_text: Recommencer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10728,8 +10743,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 131, y: 463.7}
-  m_SizeDelta: {x: 219.09998, y: 62.358}
+  m_AnchoredPosition: {x: 199.83264, y: 463.7}
+  m_SizeDelta: {x: 356.7653, y: 62.358}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1561120147
 MonoBehaviour:

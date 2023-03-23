@@ -17,6 +17,14 @@ public class Parametres : MonoBehaviour
     public GameObject musicSlider;
     private float sliderValue = 0.0f;
     
+    public GameObject melangeSlider;
+    private float sliderMelangeValue = 0.0f;
+    public GameObject inputMelange;
+
+    public GameObject vitesseSlider;
+    private float sliderVitesseValue = 0.0f;
+    public GameObject inputVitesse;
+
     public GameObject pleinEcran;
 
     public bool initialized;
@@ -81,6 +89,16 @@ public class Parametres : MonoBehaviour
     public void MusicSlider (){
         //PlayerPrefs.SetFloat("MusicVolume", sliderValue);
         PlayerPrefs.SetFloat("Volume", musicSlider.GetComponent<Slider>().value);
+    }
+    public void MelangeSlider (){
+        //PlayerPrefs.SetFloat("MusicVolume", sliderValue);
+        PlayerPrefs.SetFloat("Melange", melangeSlider.GetComponent<Slider>().value);
+    }
+    
+        
+    public void VitesseSlider (){
+        //PlayerPrefs.SetFloat("MusicVolume", sliderValue);
+        PlayerPrefs.SetFloat("Vitesse", vitesseSlider.GetComponent<Slider>().value);
     }
     
     #region Sensibilité de la souris
@@ -225,6 +243,17 @@ public class Parametres : MonoBehaviour
 
         }
 
+        if (PlayerPrefs.HasKey("Melange"))
+        {
+            melangeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Melange");
+
+        }
+        
+        if (PlayerPrefs.HasKey("Vitesse"))
+        {
+            vitesseSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Vitesse");
+
+        }
         // mouseSensitivity = PlayerPrefs.GetFloat("currentSens", 100);
         // mouseSensitivitySlider.value = mouseSensitivity / 10;
         
@@ -306,6 +335,12 @@ public class Parametres : MonoBehaviour
         // assignerAntiHoraire.GetComponent<TMP_Text>().text = "Z";
 
         sliderValue = musicSlider.GetComponent<Slider>().value;
+        
+        sliderMelangeValue = melangeSlider.GetComponent<Slider>().value;
+        inputMelange.GetComponent<TMP_InputField>().text = melangeSlider.GetComponent<Slider>().value.ToString();
+        
+        sliderVitesseValue = vitesseSlider.GetComponent<Slider>().value;
+        inputVitesse.GetComponent<TMP_InputField>().text= vitesseSlider.GetComponent<Slider>().value.ToString();
 
     }
 }

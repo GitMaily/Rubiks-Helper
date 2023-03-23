@@ -14,6 +14,10 @@ public class PivotRotation : MonoBehaviour
     
     private bool autoRotating = false;
     private Quaternion targetQuaternion;
+    
+    /// <summary>
+    /// Vitesse de la rotation d'une face du Rubik's Cube
+    /// </summary>
     private float speed = 300f;
     
     private float sensibility = 0.25f;
@@ -42,6 +46,11 @@ public class PivotRotation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     { 
+        if (PlayerPrefs.HasKey("Vitesse"))
+        {
+            speed = PlayerPrefs.GetFloat("Vitesse");
+            Debug.Log(speed);
+        }
         readCube = FindObjectOfType<ReadCube>();
         cubeState = FindObjectOfType<CubeState>();
         
@@ -260,6 +269,7 @@ public class PivotRotation : MonoBehaviour
 
             // dégrouper les petits cubes
             cubeState.PutDown(activeSide, transform.parent);
+            //PauseBug();
             readCube.ReadState();
             // réinitialiser les booléens qui permettaient d'affirmer la manipulation
             CubeState.autoRotating = false;
@@ -268,7 +278,11 @@ public class PivotRotation : MonoBehaviour
         }
     }
 
-
+    IEnumerator PauseBug()
+    {
+        yield return new WaitForSeconds(5f);
+    }
+    
     public void StartAutoRotate(List<GameObject> side, float angle)
     {
         cubeState.PickUp(side);

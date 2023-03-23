@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RotationAutomatique : MonoBehaviour
 {
@@ -75,10 +76,19 @@ public class RotationAutomatique : MonoBehaviour
     public static bool estResolu = false;
     public Helper h1;
     public int etape=0;
+
+    private float nbMelange;
+    
     
     // Start is called before the first frame update
     void Start()
     {
+        if (PlayerPrefs.HasKey("Melange"))
+        {
+            nbMelange = PlayerPrefs.GetFloat("Melange");
+            Debug.Log(nbMelange);
+        }
+        
         cubeState = FindObjectOfType<CubeState>();
         readCube = FindObjectOfType<ReadCube>();
         moveListMemoire.Clear();
@@ -118,6 +128,7 @@ public class RotationAutomatique : MonoBehaviour
         if (pileMelanger.Count > 0 && !CubeState.autoRotating && CubeState.started)
         {
             string move = DoMove(pileMelanger.Pop());
+            //StartCoroutine(PauseBug());
             pileRotations.Push(move);
             pileAide.Push(InverserMove(move));
             estMelanger = false;
@@ -179,11 +190,11 @@ public class RotationAutomatique : MonoBehaviour
     public void BoutonMelanger()
     {
         List<string> moves = new List<string>();
-        int shuffleLength = Random.Range(10, 15);
+        int longueurMelange = Random.Range(10, 15);
         string derniereRotation = "";
-        
-        for (int i = 0; i < shuffleLength; i++)
+        for (int i = 0; i < (PlayerPrefs.HasKey("Melange")? nbMelange : longueurMelange); i++)
         {
+            Debug.Log(nbMelange+"dans melanger");
 
             int randomMove = Random.Range(0, allMoves.Count);
             string selection = allMoves[randomMove];
@@ -442,7 +453,6 @@ public class RotationAutomatique : MonoBehaviour
     {
         if (move.Contains("'"))
         {
-            move = move.Replace("'", "");
         }
         else
         {
@@ -572,4 +582,13 @@ public class RotationAutomatique : MonoBehaviour
         Debug.Log(sb.ToString());
     }
     
+    
+    IEnumerator PauseBug()
+    {
+        Debug.Log("Starting PauseBug coroutine...");
+
+        yield return new WaitForSeconds(5f);
+        Debug.Log("PauseBug coroutine finished.");
+
+    }
 }
