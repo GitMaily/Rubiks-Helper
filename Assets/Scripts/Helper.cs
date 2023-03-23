@@ -12,6 +12,10 @@ using UnityEngine.UI;
 public class Helper : MonoBehaviour
 {
     public GameObject PanelHelper;
+    public GameObject PanelHelper2;
+    public GameObject nomFaces;
+    public GameObject RubiksMap;
+    
     public GameObject Toggle;
     public Text indicationClic;
     public Text indicationRelache;
@@ -59,10 +63,19 @@ public class Helper : MonoBehaviour
         if (Toggle.GetComponent<Toggle>().isOn)
         {
             PanelHelper.SetActive(true);
+            PanelHelper2.SetActive(true);
+            nomFaces.SetActive(true);
+            RubiksMap.SetActive(true);
+
+
         }
         else
         {
             PanelHelper.SetActive(false);
+            PanelHelper2.SetActive(false);
+            nomFaces.SetActive(false);
+            RubiksMap.SetActive(false);
+
         }
     }
     

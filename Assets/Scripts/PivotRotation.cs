@@ -35,6 +35,9 @@ public class PivotRotation : MonoBehaviour
     
     public static List<string> facesSelectionnees = new List<string>();
     public static List<string> listeRotationsManuelles = new List<string>();
+
+    public AudioSource audioSource;
+    public AudioClip rotationSound;
     
     // Start is called before the first frame update
     void Start()
@@ -52,7 +55,7 @@ public class PivotRotation : MonoBehaviour
         if (dragging)
         {
             nomMove = SpinSide(activeSide);
-            
+
             if (!rotationAjoutee)
             {
                 facesSelectionnees.Add(nomMove);
@@ -71,6 +74,7 @@ public class PivotRotation : MonoBehaviour
         {
             
             //Input.ResetInputAxes();
+
             AutoRotate();
 
             
@@ -82,6 +86,7 @@ public class PivotRotation : MonoBehaviour
     {
         activeSide = side;
         mouseRef = Input.mousePosition;
+
         dragging = true;
         // Créer un vecteur pour faire tourner
         localForward = Vector3.zero - side[4].transform.parent.transform.localPosition;
@@ -163,9 +168,8 @@ public class PivotRotation : MonoBehaviour
         }
         // rotate
         transform.Rotate(rotation, Space.Self);
-        
-        //var rotationFinale = transform.rotation.eulerAngles;
 
+        //var rotationFinale = transform.rotation.eulerAngles;
 
         mouseRef = Input.mousePosition;
         isFunctionRunning = false;
@@ -197,7 +201,7 @@ public class PivotRotation : MonoBehaviour
         //Vector3 initialRotation = activeSide[4].transform.localEulerAngles;
 
         transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetQuaternion, step);
-        
+
         //Vector3 currentRotation = activeSide[4].transform.localEulerAngles;
         
         
@@ -253,7 +257,7 @@ public class PivotRotation : MonoBehaviour
 
                 }
             }
-            
+
             // dégrouper les petits cubes
             cubeState.PutDown(activeSide, transform.parent);
             readCube.ReadState();

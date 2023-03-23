@@ -315,16 +315,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 12309953}
-  message: {fileID: 12309949}
-  hasImage: 1
-  isText: 0
 --- !u!95 &12309952
 Animator:
   serializedVersion: 5
@@ -613,16 +603,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!95 &30873356
 Animator:
   serializedVersion: 5
@@ -851,42 +831,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f6aa6586f77764fab668a0a62d8f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform: 0
-  mobileSFXtext: {fileID: 0}
-  mobileMusictext: {fileID: 0}
-  mobileShadowofftextLINE: {fileID: 0}
-  mobileShadowlowtextLINE: {fileID: 0}
-  mobileShadowhightextLINE: {fileID: 0}
-  fullscreentext: {fileID: 1459764402}
-  ambientocclusiontext: {fileID: 0}
-  shadowofftextLINE: {fileID: 0}
-  shadowlowtextLINE: {fileID: 0}
-  shadowhightextLINE: {fileID: 0}
-  aaofftextLINE: {fileID: 0}
-  aa2xtextLINE: {fileID: 0}
-  aa4xtextLINE: {fileID: 0}
-  aa8xtextLINE: {fileID: 0}
-  vsynctext: {fileID: 0}
-  motionblurtext: {fileID: 0}
-  texturelowtextLINE: {fileID: 160804500}
-  texturemedtextLINE: {fileID: 998585361}
-  texturehightextLINE: {fileID: 1809837068}
-  cameraeffectstext: {fileID: 0}
-  showhudtext: {fileID: 1432158170}
-  tooltipstext: {fileID: 1278449465}
-  difficultynormaltext: {fileID: 0}
-  difficultynormaltextLINE: {fileID: 0}
-  difficultyhardcoretext: {fileID: 0}
-  difficultyhardcoretextLINE: {fileID: 0}
-  invertmousetext: {fileID: 1941142589}
-  musicSlider: {fileID: 0}
-  sensitivityXSlider: {fileID: 0}
-  sensitivityYSlider: {fileID: 0}
-  mouseSmoothSlider: {fileID: 0}
-  sliderValue: 0
-  sliderValueXSensitivity: 0
-  sliderValueYSensitivity: 0
-  sliderValueSmoothing: 0
 --- !u!114 &57418675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1104,16 +1048,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 59484971}
-  message: {fileID: 59484968}
-  hasImage: 1
-  isText: 0
 --- !u!114 &59484971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1405,6 +1339,7 @@ Transform:
   m_Children:
   - {fileID: 1090718958}
   - {fileID: 67894393}
+  - {fileID: 836051418}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -1792,16 +1727,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!114 &160804503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2405,16 +2330,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!95 &280427306
 Animator:
   serializedVersion: 5
@@ -2528,16 +2443,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 314698719}
-  message: {fileID: 314698714}
-  hasImage: 1
-  isText: 0
 --- !u!114 &314698717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2712,16 +2617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 338075066}
-  message: {fileID: 338075063}
-  hasImage: 1
-  isText: 0
 --- !u!114 &338075066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3022,16 +2917,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!114 &385382523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3348,16 +3233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 449550736}
-  message: {fileID: 449550731}
-  hasImage: 1
-  isText: 0
 --- !u!114 &449550734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3779,16 +3654,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 512547371}
-  message: {fileID: 512547366}
-  hasImage: 1
-  isText: 0
 --- !u!114 &512547369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3963,16 +3828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 525877986}
-  message: {fileID: 525877983}
-  hasImage: 1
-  isText: 0
 --- !u!114 &525877986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4456,16 +4311,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!114 &597084084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4653,16 +4498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!114 &620074496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4904,16 +4739,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 705874922}
-  message: {fileID: 705874919}
-  hasImage: 1
-  isText: 0
 --- !u!114 &705874922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5003,16 +4828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 721379056}
-  message: {fileID: 721379053}
-  hasImage: 1
-  isText: 0
 --- !u!114 &721379056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5102,16 +4917,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 739398994}
-  message: {fileID: 739398991}
-  hasImage: 1
-  isText: 0
 --- !u!114 &739398994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5649,16 +5454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 755488641}
-  message: {fileID: 755488638}
-  hasImage: 1
-  isText: 0
 --- !u!114 &755488641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6018,16 +5813,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!95 &823256414
 Animator:
   serializedVersion: 5
@@ -6086,6 +5871,147 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 823256411}
   m_CullTransparentMesh: 0
+--- !u!1 &836051417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 836051418}
+  - component: {fileID: 836051420}
+  - component: {fileID: 836051419}
+  m_Layer: 0
+  m_Name: RotationSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &836051418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836051417}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 112257709}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &836051419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836051417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba9eb389d7bf95548b0a86e7c3e47e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &836051420
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836051417}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8129d1e3aae7fe5438f2e2cf89689ccf, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.12
+  m_Pitch: 0.8
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 495.0495
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &838504869
 GameObject:
   m_ObjectHideFlags: 0
@@ -6140,16 +6066,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 838504874}
-  message: {fileID: 838504869}
-  hasImage: 1
-  isText: 0
 --- !u!114 &838504872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6327,16 +6243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!114 &866924022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6818,16 +6724,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!114 &909796649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6917,16 +6813,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 914125709}
-  message: {fileID: 914125706}
-  hasImage: 1
-  isText: 0
 --- !u!114 &914125709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7107,16 +6993,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 916135218}
-  message: {fileID: 916135213}
-  hasImage: 1
-  isText: 0
 --- !u!114 &916135216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7426,16 +7302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!95 &925236876
 Animator:
   serializedVersion: 5
@@ -8412,16 +8278,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!114 &998585364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8683,16 +8539,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1003204975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8784,16 +8630,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 1014980750}
-  message: {fileID: 1014980747}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1014980750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9062,16 +8898,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!95 &1062343000
 Animator:
   serializedVersion: 5
@@ -9181,16 +9007,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1062405684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9280,16 +9096,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 1074231605}
-  message: {fileID: 1074231602}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1074231605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9753,16 +9559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 1149316958}
-  message: {fileID: 1149316955}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1149316958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10345,16 +10141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 1183793900}
-  message: {fileID: 1183793897}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1183793900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10444,16 +10230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 1191875957}
-  message: {fileID: 1191875954}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1191875957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10873,16 +10649,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 1227087651}
-  message: {fileID: 1227087648}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1227087651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11046,16 +10812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 1252703524}
-  message: {fileID: 1252703521}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1252703524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11462,16 +11218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 1372383520}
-  message: {fileID: 1372383515}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1372383518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11649,16 +11395,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 1377284533}
-  message: {fileID: 1377284528}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1377284531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11968,16 +11704,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!95 &1387734644
 Animator:
   serializedVersion: 5
@@ -12087,16 +11813,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 1388283146}
-  message: {fileID: 1388283143}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1388283146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12186,16 +11902,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 1406975803}
-  message: {fileID: 1406975800}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1406975803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12287,16 +11993,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1417573636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12966,16 +12662,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 1500094172}
-  message: {fileID: 1500094167}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1500094170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13153,16 +12839,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1513724318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13964,16 +13640,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 0
-  isText: 1
 --- !u!114 &1587432646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14399,16 +14065,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 1614873106}
-  message: {fileID: 1614873103}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1614873106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14498,16 +14154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1637802440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15225,16 +14871,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 1755740752}
-  message: {fileID: 1755740747}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1755740750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15459,16 +15095,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!95 &1793146268
 Animator:
   serializedVersion: 5
@@ -15581,16 +15207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 1798011772}
-  message: {fileID: 1798011767}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1798011770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15811,16 +15427,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1809837071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16887,16 +16493,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 1913654374}
-  message: {fileID: 1913654371}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1913654374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17352,16 +16948,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 1949793262}
-  message: {fileID: 1949793259}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1949793262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17629,16 +17215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 1981255642}
-  message: {fileID: 1981255639}
-  hasImage: 1
-  isText: 0
 --- !u!114 &1981255642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17858,16 +17434,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 0}
-  message: {fileID: 0}
-  hasImage: 1
-  isText: 0
 --- !u!114 &2014186557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18042,16 +17608,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 2036053868}
-  message: {fileID: 2036053865}
-  hasImage: 1
-  isText: 0
 --- !u!114 &2036053868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19060,16 +18616,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4870c7d0bdddd644a64ab8bc98f83ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  themeController: {fileID: 11400000, guid: e00c7d2bc58a2424b8dc09ecdafdb067, type: 2}
-  outline:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  image: {fileID: 7316806615701520513}
-  message: {fileID: 7211535135993562349}
-  hasImage: 1
-  isText: 0
 --- !u!224 &8990441078587082562
 RectTransform:
   m_ObjectHideFlags: 0
