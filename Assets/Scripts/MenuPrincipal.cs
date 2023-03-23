@@ -55,7 +55,7 @@ public class MenuPrincipal : MonoBehaviour
     
     public void BoutonMiniJeux()
     {
-        SceneManager.LoadScene("MenuMiniJeux");
+        SceneManager.LoadScene("MeilleurScore");
         
         menuQuitter.SetActive(false);
         menuJouer.SetActive(false);
